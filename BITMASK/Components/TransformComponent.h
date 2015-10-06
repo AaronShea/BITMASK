@@ -9,12 +9,5 @@ class TransformComponent : public Component
 		float rot;
 
 	public:
-		TransformComponent(float x, float y, float rot)
-			: Component()
-		{
-			this->mask = ComponentMask::TRANSFORM;
-			pos.x = x;
-			pos.y = y;
-			rot = rot;
-		};
+		TransformComponent(float x, float y, float rot);
 };

@@ -1,20 +1,13 @@
 #pragma once
-#include "Components/ComponentIndex.h"
 
 class Component
 {
 	public:
 
-		Component()
-		{
-			// STUB
-		};
+		Component();
+		virtual ~Component() = 0;
 
-		virtual ~Component()
-		{
-			// STUB
-		};
+		virtual void update(sf::Time deltaTime) = 0;
 
-		unsigned long mask = 0;
 		int id = 0;
 };

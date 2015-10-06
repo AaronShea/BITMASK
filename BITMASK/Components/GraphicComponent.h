@@ -6,11 +6,7 @@
 class GraphicComponent : public Component
 {
 	public:
-		GraphicComponent(std::string imgPath)
-			: Component()
-		{
-			this->mask = ComponentMask::GRAPHIC;
-		};
+		GraphicComponent(std::string imgPath);
 		sf::Texture mTexture;
 		sf::Sprite mSprite;
 };

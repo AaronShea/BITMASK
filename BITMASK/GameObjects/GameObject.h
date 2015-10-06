@@ -8,9 +8,6 @@ class GameObject
 		// Map containing actual entity components
 		std::map<int, Component*> components;
 
-		// Bitmask used to know what kind of components this entity contains
-		unsigned long componentMask = 0;
-
 		// Current index for next component space in map
 		int compIndex = 0;
 
@@ -43,13 +40,6 @@ class GameObject
 		*/
 		void addComponent(Component* compToAdd)
 		{
-			// Do we already have this component in our bitmask?
-			if (!(componentMask & compToAdd->mask))
-			{
-				// Add it to the bitmask
-				componentMask |= compToAdd->mask;
-			}
-
 			// Set the compId
 			compToAdd->id = compIndex;
 
@@ -67,9 +57,6 @@ class GameObject
 		{
 			// Get the component we want to remove
 			Component* removedComp = components[componentId];
-
-			// Remove it from our bitmask
-			componentMask &= ~removedComp->mask;
 
 			// Remove it from the map
 			components.erase(componentId);
