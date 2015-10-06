@@ -15,6 +15,9 @@ class GameObject
 		int compIndex = 0;
 
 	public:
+
+		int objectId = 0;
+
 		/**
 		* Finds the first component in the map that matches the type given in the template argument
 		*/
