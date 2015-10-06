@@ -55,12 +55,13 @@
     <ClInclude Include="GameObjects\Component.h" />
     <ClInclude Include="GameObjects\GameObject.h" />
     <ClInclude Include="Resources\ResourceManager.h" />
+    <ClInclude Include="Systems\InputSystem.h" />
+    <ClInclude Include="Systems\System.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ResourceManager.inl" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Components\KeyboardInputComponent.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>

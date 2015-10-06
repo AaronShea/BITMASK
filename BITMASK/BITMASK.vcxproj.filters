@@ -22,6 +22,9 @@
     <Filter Include="Source Files\Resources">
       <UniqueIdentifier>{ee772f3a-693e-4191-a285-11c143981e8a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Systems">
+      <UniqueIdentifier>{41f1fd03-6065-405e-8f5d-fd8be628bc1f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -45,6 +48,12 @@
     <ClInclude Include="Components\ComponentIndex.h">
       <Filter>Source Files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Systems\System.h">
+      <Filter>Source Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\InputSystem.h">
+      <Filter>Source Files\Systems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -52,9 +61,6 @@
     </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\KeyboardInputComponent.cpp">
-      <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
