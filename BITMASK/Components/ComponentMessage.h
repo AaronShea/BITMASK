@@ -21,7 +21,7 @@ class ComponentMessage
 		template <typename DataType>
 		DataType getData()
 		{
-			return *(DataType*)(data);
+			return *static_cast<DataType*>(data);
 		}
 
 		~ComponentMessage() {};

@@ -11,6 +11,11 @@ TransformComponent::TransformComponent(float x, float y, float rot, GameObject* 
 	auto testBack = msgt->getData<int>();
 }
 
+TransformComponent::~TransformComponent()
+{
+	// Deconstructor Transform
+}
+
 void TransformComponent::update(sf::Time deltaTime) {}
 
 void TransformComponent::receiveMessage(ComponentMessage* msg)

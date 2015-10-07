@@ -1,12 +1,12 @@
 #pragma once
 #include "Components/Component.h"
-#include <map>
+#include <vector>
 
 class GameObject
 {
 	private:
 		// Map containing actual entity components
-		std::map<int, Component*> components;
+		std::vector<std::pair<int, Component*>> components;
 
 		// Current index for next component space in map
 		int compIndex = 0;
@@ -69,7 +69,7 @@ class GameObject
 			compToAdd->id = compIndex;
 
 			// Append it to the component vector
-			components.insert(std::pair<int, Component*>(compIndex, compToAdd));
+			components.push_back(std::pair<int, Component*>(compIndex, compToAdd));
 
 			// Increment for the next component to insert
 			compIndex++;
@@ -78,13 +78,16 @@ class GameObject
 		/**
 		* Remove a component from this entity based on the component id (local map key)
 		*/
-		void removeComponent(int componentId)
+		void removeComponent(int compId)
 		{
-			// Get the component we want to remove
-			Component* removedComp = components[componentId];
+			// Find it based on the component id
+			auto t = find_if(components.begin(), components.end(), [compId](const std::pair<int, Component*>& element){ return element.first == compId; });
 
-			// Remove it from the map
-			components.erase(componentId);
+			// Call deconstructor on Component
+			delete t->second;
+
+			// Remove pointer pair from the vector
+			components.erase(t);
 		};
 
 

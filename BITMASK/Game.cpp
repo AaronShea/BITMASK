@@ -5,6 +5,7 @@ Game::Game()
 {
 	auto thing = new GameObject();
 	thing->addComponent(new TransformComponent(0.f, 0.f, 0.f, thing));
+	thing->removeComponent(0);
 }
 
 void Game::run()
