@@ -1,8 +1,8 @@
 #pragma once
-#include "ComponentMessage.h"
 #include "SFML/System.hpp"
 
 class GameObject;
+class ComponentMessage;
 
 class Component
 {
