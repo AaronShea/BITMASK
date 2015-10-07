@@ -1,13 +1,24 @@
 #pragma once
+#include "ComponentMessage.h"
+#include "SFML/System.hpp"
+
+class GameObject;
 
 class Component
 {
+
+	private:
+		GameObject* owner;
+
 	public:
 
-		Component();
-		virtual ~Component() = 0;
+		Component(GameObject* owner)
+		{
+			this->owner = owner;
+		};
 
 		virtual void update(sf::Time deltaTime) = 0;
+		virtual void receiveMessage(ComponentMessage* msg) = 0;
 
 		int id = 0;
 };

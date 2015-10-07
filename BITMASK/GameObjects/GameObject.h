@@ -47,6 +47,20 @@ class GameObject
 		}
 
 		/**
+		* Send a message to all components in this GameObject
+		*/
+		void sendMessage(Component* sender, ComponentMessage* msg)
+		{
+			for (auto c : components)
+			{
+				if (c.second->id != sender->id)
+				{
+					c.second->receiveMessage(msg);
+				}
+			}
+		};
+
+		/**
 		* Add a component to this entity
 		*/
 		void addComponent(Component* compToAdd)

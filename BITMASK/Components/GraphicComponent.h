@@ -6,7 +6,7 @@
 class GraphicComponent : public Component
 {
 	public:
-		GraphicComponent(std::string imgPath);
+		GraphicComponent(std::string imgPath, GameObject* owner);
 		sf::Texture mTexture;
 		sf::Sprite mSprite;
 };

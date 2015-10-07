@@ -9,5 +9,7 @@ class TransformComponent : public Component
 		float rot;
 
 	public:
-		TransformComponent(float x, float y, float rot);
+		TransformComponent(float x, float y, float rot, GameObject* owner);
+		void receiveMessage(ComponentMessage* msg) override;
+		void update(sf::Time deltaTime) override;
 };
