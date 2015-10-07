@@ -1,5 +1,5 @@
 #pragma once
-#include "Component.h"
+#include "Components/Component.h"
 #include <map>
 
 class GameObject
@@ -33,6 +33,17 @@ class GameObject
 			}
 			sf::err() << "Component type " << typeid(CompType).name() << " not found in entity!";
 			return nullptr;
+		}
+
+		/**
+		* Update all components in this GameObject
+		*/
+		void update(sf::Time deltaTime)
+		{
+			for (auto c : components)
+			{
+				c.second->update(deltaTime);
+			}
 		}
 
 		/**

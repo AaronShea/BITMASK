@@ -48,10 +48,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Components\Component.h" />
     <ClInclude Include="Components\GraphicComponent.h" />
     <ClInclude Include="Components\TransformComponent.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="GameObjects\Component.h" />
     <ClInclude Include="GameObjects\GameObject.h" />
     <ClInclude Include="Resources\ResourceManager.h" />
   </ItemGroup>
