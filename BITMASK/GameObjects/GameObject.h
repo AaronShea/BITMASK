@@ -14,6 +14,7 @@ class GameObject
 	public:
 
 		int objectId = 0;
+		bool enabled = false;
 
 		/**
 		* Finds the first component in the map that matches the type given in the template argument
@@ -40,6 +41,12 @@ class GameObject
 		*/
 		void update(sf::Time deltaTime)
 		{
+			// Only update if this object is enabled
+			if (!enabled)
+			{
+				return;
+			}
+
 			for (auto c : components)
 			{
 				c.second->update(deltaTime);

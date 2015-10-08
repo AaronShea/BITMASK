@@ -3,9 +3,7 @@
 Game::Game()
 	: mWindow(sf::VideoMode(640, 480), "SFML Application")
 {
-	auto thing = new GameObject();
-	thing->addComponent(new TransformComponent(0.f, 0.f, 0.f, thing));
-	thing->removeComponent(0);
+
 }
 
 void Game::run()

@@ -54,6 +54,7 @@
     <ClInclude Include="Components\TransformComponent.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObjects\GameObject.h" />
+    <ClInclude Include="GameObjects\GameObjectManager.h" />
     <ClInclude Include="Resources\ResourceManager.h" />
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +63,7 @@
   <ItemGroup>
     <ClCompile Include="Components\TransformComponent.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameObjects\GameObjectManager.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

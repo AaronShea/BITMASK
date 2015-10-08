@@ -3,6 +3,7 @@
 #include "SFML/Graphics.hpp"
 
 #include "Resources/ResourceManager.h"
+#include "GameObjects/GameObjectManager.h"
 #include "GameObjects/GameObject.h"
 #include "Components/GraphicComponent.h"
 #include "Components/TransformComponent.h"
