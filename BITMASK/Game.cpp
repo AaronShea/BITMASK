@@ -1,7 +1,8 @@
 #include "Game.h"
 
 Game::Game()
-	: mWindow(sf::VideoMode(640, 480), "SFML Application")
+	: mWindow(sf::VideoMode(640, 480), "SFML Application"),
+	manager()
 {
 
 }
@@ -53,51 +54,12 @@ void Game::processEvents()
 
 void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
 {
-	if (key == sf::Keyboard::W)
-	{
-		pUp = isPressed;
-	}
 
-	if (key == sf::Keyboard::S)
-	{
-		pDown = isPressed;
-	}
-	
-	if (key == sf::Keyboard::A)
-	{
-		pLeft = isPressed;
-	}
-	
-	if (key == sf::Keyboard::D)
-	{
-		pRight = isPressed;
-	}
 }
 
 void Game::update(sf::Time deltaTime)
 {
-	sf::Vector2f movement(0.f, 0.f);
-	if (pUp)
-	{
-		movement.y -= playerSpeed;
-	}
 
-	if (pDown)
-	{
-		movement.y += playerSpeed;
-	}
-
-	if (pLeft)
-	{
-		movement.x -= playerSpeed;
-	}
-
-	if (pRight)
-	{
-		movement.x += playerSpeed;
-	}
-
-	// mPlayer.move(movement * deltaTime.asSeconds());
 }
 
 void Game::render()

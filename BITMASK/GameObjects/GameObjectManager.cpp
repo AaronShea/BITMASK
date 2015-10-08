@@ -19,7 +19,6 @@ GameObject* GameObjectManager::createObject()
 GameObject* GameObjectManager::findObjectById(int id)
 {
 	auto t = find_if(objList.begin(), objList.end(), [id](const std::pair<int, GameObject*>& element){ return element.first == id; });
-
 	return t->second;
 }
 

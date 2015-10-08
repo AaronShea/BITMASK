@@ -8,8 +8,8 @@
 #include "Components/GraphicComponent.h"
 #include "Components/TransformComponent.h"
 
-class Game {
-
+class Game 
+{
 	public:
 		Game();
 		void run();
@@ -19,20 +19,12 @@ class Game {
 		void render();
 		void update(sf::Time deltaTime);
 
-		// Fixed max framerate is here
+		// Fixed max framerate is set here
 		sf::Time timePerFrame = sf::seconds(1.f / 120.f);
 
 		void handlePlayerInput(sf::Keyboard::Key key,bool isPressed);
 
 		sf::RenderWindow mWindow;
 
-		GameObject* mPlayer;
-
-		float playerSpeed = 100.f;
-		
-		bool pUp = false;
-		bool pDown = false;
-		bool pLeft = false;
-		bool pRight = false;
-
+		GameObjectManager manager;
 };
