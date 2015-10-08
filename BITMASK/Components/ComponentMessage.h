@@ -1,12 +1,18 @@
 #pragma once
 
+enum event_type
+{
+	PLAYER_MOVEMENT,
+	SPRITE_CHANGE
+};
+
 class ComponentMessage
 {
 	public:
 		void* data;
-		int eventId = 0;
+		event_type eventId;
 
-		ComponentMessage(int id)
+		ComponentMessage(event_type id)
 		{
 			this->eventId = id;
 			
