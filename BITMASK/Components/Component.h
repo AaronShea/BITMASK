@@ -8,19 +8,12 @@ class Component
 {
 
 	private:
-		GameObject* owner;
 
 	public:
 
-		Component(GameObject* owner)
-		{
-			this->owner = owner;
-		};
+		Component() {};
 
 		virtual ~Component() {};
-
-		virtual void update(sf::Time deltaTime) = 0;
-		virtual void receiveMessage(ComponentMessage* msg) = 0;
 
 		int id = 0;
 };

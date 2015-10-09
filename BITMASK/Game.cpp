@@ -1,8 +1,7 @@
 #include "Game.h"
 
 Game::Game()
-	: mWindow(sf::VideoMode(640, 480), "SFML Application"),
-	manager()
+	: mWindow(sf::VideoMode(640, 480), "SFML Application")
 {
 
 }
@@ -59,7 +58,6 @@ void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
 
 void Game::update(sf::Time deltaTime)
 {
-
 }
 
 void Game::render()

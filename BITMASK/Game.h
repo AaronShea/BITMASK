@@ -1,11 +1,8 @@
 #pragma once
-#define SFML_STATIC
 #include "SFML/Graphics.hpp"
 
 #include "Resources/ResourceManager.h"
-#include "GameObjects/GameObjectManager.h"
 #include "GameObjects/GameObject.h"
-#include "Components/GraphicComponent.h"
 #include "Components/TransformComponent.h"
 
 class Game 
@@ -25,6 +22,4 @@ class Game
 		void handlePlayerInput(sf::Keyboard::Key key,bool isPressed);
 
 		sf::RenderWindow mWindow;
-
-		GameObjectManager manager;
 };

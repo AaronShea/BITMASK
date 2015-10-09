@@ -1,12 +1,13 @@
 #pragma once
 #include "Components/Component.h"
 #include <vector>
+#include <memory>
 
 class GameObject
 {
 	private:
 		// Map containing actual entity components
-		std::vector<std::pair<int, Component*>> components;
+		std::vector<std::pair<int, std::unique_ptr<Component>>> components;
 
 		// Current index for next component space in map
 		int compIndex = 0;
@@ -37,37 +38,6 @@ class GameObject
 		}
 
 		/**
-		* Update all components in this GameObject
-		*/
-		void update(sf::Time deltaTime)
-		{
-			// Only update if this object is enabled
-			if (!enabled)
-			{
-				return;
-			}
-
-			for (auto c : components)
-			{
-				c.second->update(deltaTime);
-			}
-		}
-
-		/**
-		* Send a message to all components in this GameObject
-		*/
-		void sendMessage(Component* sender, ComponentMessage* msg)
-		{
-			for (auto c : components)
-			{
-				if (c.second->id != sender->id)
-				{
-					c.second->receiveMessage(msg);
-				}
-			}
-		};
-
-		/**
 		* Add a component to this entity
 		*/
 		void addComponent(Component* compToAdd)
@@ -76,7 +46,7 @@ class GameObject
 			compToAdd->id = compIndex;
 
 			// Append it to the component vector
-			components.push_back(std::pair<int, Component*>(compIndex, compToAdd));
+			components.push_back(std::pair<int, std::unique_ptr<Component>>(compIndex, std::unique_ptr<Component>(compToAdd)));
 
 			// Increment for the next component to insert
 			compIndex++;
@@ -88,10 +58,7 @@ class GameObject
 		void removeComponent(int compId)
 		{
 			// Find it based on the component id
-			auto t = find_if(components.begin(), components.end(), [compId](const std::pair<int, Component*>& element){ return element.first == compId; });
-
-			// Call deconstructor on Component
-			delete t->second;
+			auto t = find_if(components.begin(), components.end(), [compId](const std::pair<int, std::unique_ptr<Component>>& element){ return element.first == compId; });
 
 			// Remove pointer pair from the vector
 			components.erase(t);
