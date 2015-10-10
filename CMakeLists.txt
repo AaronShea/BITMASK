@@ -25,7 +25,7 @@ source_group("Components" FILES ${BITMASK_CMP_SRC})
 
 # Systems
 set(BITMASK_SYS_SRC
-	"BITMASK/Systems/"
+	"BITMASK/Systems/system.h"
 )
 source_group("Systems" FILES ${BITMASK_SYS_SRC})
 
@@ -44,7 +44,8 @@ source_group("Resources" FILES ${BITMASK_RES_SRC})
 
 # Managers
 set(BITMASK_MGR_SRC
-	"BITMASK/Managers/"
+	"BITMASK/Managers/SystemManager.h"
+	"BITMASK/Managers/SystemManager.cpp"
 )
 source_group("Managers" FILES ${BITMASK_MGR_SRC})
 
