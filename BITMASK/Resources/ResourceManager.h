@@ -2,7 +2,7 @@
 #include <map>
 #include <memory>
 #include <assert.h>
-#include <SFML\Graphics.hpp>
+#include "SFML/Graphics.hpp"
 
 template<typename Resource>
 class ResourceManager
