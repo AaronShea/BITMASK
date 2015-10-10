@@ -63,15 +63,7 @@ endif()
 # define the list of search paths for headers and libraries
 set(FIND_SFML_PATHS
     ${SFML_ROOT}
-    $ENV{SFML_ROOT}
-    ~/Library/Frameworks
-    /Library/Frameworks
-    /usr/local
-    /usr
-    /sw
-    /opt/local
-    /opt/csw
-    /opt)
+    $ENV{SFML_ROOT})
 
 # find the SFML include directory
 find_path(SFML_INCLUDE_DIR SFML/Config.hpp
