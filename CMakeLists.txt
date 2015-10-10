@@ -65,6 +65,11 @@ if(WIN32)
 	set(SFML_STATIC_LIBRARIES true)
 endif()
 
+# If UNIX, we need to use c++11 and libc++
+if(UNIX)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -stdlib=libc++")
+endif()
+
 # We require OpenGL
 find_package(OpenGL REQUIRED)
 target_link_libraries(BITMASK ${OPENGL_LIBRARIES})
