@@ -25,7 +25,7 @@ source_group("Components" FILES ${BITMASK_CMP_SRC})
 
 # Systems
 set(BITMASK_SYS_SRC
-	"BITMASK/Systems/system.h"
+	"BITMASK/Systems/System.h"
 )
 source_group("Systems" FILES ${BITMASK_SYS_SRC})
 
