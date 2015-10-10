@@ -24,7 +24,7 @@ class GameObject
 		CompType* getSingleComponent()
 		{
 			// Loop through all components
-			for (auto comp : components)
+			for (auto& comp : components)
 			{
 			    // Make sure this is the right type of component we are looking for
 				auto testPtr = dynamic_cast<CompType*>(comp.second);
