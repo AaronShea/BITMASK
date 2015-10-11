@@ -1,19 +1,17 @@
 #pragma once
-#include "Components/Component.h"
+#include "GameObjects/GameObject.h"
+#include <vector>
 
 class System
 {
-	private:
-		std::vector<std::pair<int, Component*>> components;
-		unsigned long requiredMask = 0;
+	protected:
+		std::vector<GameObject*> objects;
 
 	public:
-		System();
-		virtual ~System();
+		virtual void added() = 0;
+		virtual void removed() = 0;
+		virtual void addObj(GameObject* obj) = 0;
+		virtual void removeObj(const GameObject* obj) = 0;
 
-		virtual void added();
-		virtual void addComponent(Component* comp);
-		virtual void removeComponent(Component* compToRemove);
-
-		virtual void update(sf::Time deltaTime);
+		virtual void update(sf::Time deltaTime) = 0;
 };
