@@ -2,6 +2,7 @@
 #include "Components/Component.h"
 #include <vector>
 #include <memory>
+#include <assert.h>
 
 class GameObject
 {
@@ -38,15 +39,31 @@ class GameObject
 		}
 
 		/**
+		* Gets a single component based on ID
+		*/
+		Component* getComponentById(const int compId)
+		{
+			auto t = find_if(components.begin(), components.end(), [compId](const std::pair<int, std::unique_ptr<Component>>& element){ return element.first == compId; });
+			
+			if (t == components.end())
+			{
+				return nullptr;
+			}
+
+			return t->second.get();
+		}
+
+		/**
 		* Add a component to this entity
 		*/
-		void addComponent(Component* compToAdd)
+		template<typename CompFactoryType, typename ... Args>
+		void addComponent(Args ... args)
 		{
-			// Set the compId
-			compToAdd->id = compIndex;
-
 			// Append it to the component vector
-			components.push_back(std::pair<int, std::unique_ptr<Component>>(compIndex, std::unique_ptr<Component>(compToAdd)));
+			components.push_back(std::pair<int, std::unique_ptr<Component>>(compIndex, std::make_unique<CompFactoryType>(args ...)));
+
+			// Set the component index of the last inserted component
+			components.back().second->id = compIndex;
 
 			// Increment for the next component to insert
 			compIndex++;
@@ -55,12 +72,15 @@ class GameObject
 		/**
 		* Remove a component from this entity based on the component id (local map key)
 		*/
-		void removeComponent(int compId)
+		void removeComponent(const int compId)
 		{
 			// Find it based on the component id
 			auto t = find_if(components.begin(), components.end(), [compId](const std::pair<int, std::unique_ptr<Component>>& element){ return element.first == compId; });
 
-			// Remove pointer pair from the vector
+			// Make sure we're not trying to remove a component that does not exist
+			assert(t != components.end());
+
+			// Remove pointer pair from the vector, this will destroy the component as well
 			components.erase(t);
 		};
 
