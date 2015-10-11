@@ -9,7 +9,7 @@ class SystemManager
 {
 	private:
 		std::vector<std::unique_ptr<System>> systems;
-		std::vector<std::unique_ptr<System>> eventListeners;
+		std::vector<System*> eventListeners;
 
 	public:
 		SystemManager();
