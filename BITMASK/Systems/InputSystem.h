@@ -4,7 +4,7 @@
 class InputSystem : public System
 {
 	public:
-		InputSystem();
+		InputSystem(SystemManager* manager);
 		~InputSystem();
 
 		void added() override;

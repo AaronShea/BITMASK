@@ -2,9 +2,6 @@
 #include "SFML/System.hpp"
 #include "ComponentIndex.h"
 
-class GameObject;
-class ComponentMessage;
-
 class Component
 {
 

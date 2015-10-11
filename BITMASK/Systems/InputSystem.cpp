@@ -1,6 +1,8 @@
+#include "Managers/SystemManager.h"
 #include "InputSystem.h"
 
-InputSystem::InputSystem()
+InputSystem::InputSystem(SystemManager* manager)
+	: System(manager)
 {
 	// Constructor
 }

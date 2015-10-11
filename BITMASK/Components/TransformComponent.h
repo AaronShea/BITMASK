@@ -1,6 +1,7 @@
 #pragma once
-#include "Component.h"
 #include "SFML/Graphics.hpp"
+
+class Component;
 
 class TransformComponent : public Component
 {

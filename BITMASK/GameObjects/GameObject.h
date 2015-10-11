@@ -100,7 +100,4 @@ class GameObject
 			// Remove pointer pair from the vector, this will destroy the component as well
 			components.erase(t);
 		};
-
-
-
 };

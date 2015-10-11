@@ -1,5 +1,5 @@
+#include "Component.h"
 #include "TransformComponent.h"
-#include "GameObjects/GameObject.h"
 
 TransformComponent::TransformComponent(float x, float y, float rot)
 	: Component()
