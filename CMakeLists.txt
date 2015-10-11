@@ -18,6 +18,7 @@ source_group("Engine" FILES ${BITMASK_MAIN_SRC})
 # Components
 set(BITMASK_CMP_SRC
 	"BITMASK/Components/Component.h"
+	"BITMASK/Components/ComponentIndex.h"
 	"BITMASK/Components/TransformComponent.h"
 	"BITMASK/Components/TransformComponent.cpp"
 )
@@ -26,6 +27,7 @@ source_group("Components" FILES ${BITMASK_CMP_SRC})
 # Systems
 set(BITMASK_SYS_SRC
 	"BITMASK/Systems/System.h"
+	"BITMASK/Systems/InputSystem.h"
 )
 source_group("Systems" FILES ${BITMASK_SYS_SRC})
 
