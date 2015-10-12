@@ -4,6 +4,7 @@
 #include "Resources/ResourceManager.h"
 #include "GameObjects/GameObject.h"
 #include "Components/TransformComponent.h"
+#include "Managers/SystemManager.h"
 
 class Game 
 {
@@ -19,7 +20,7 @@ class Game
 		// Fixed max framerate is set here
 		sf::Time timePerFrame = sf::seconds(1.f / 120.f);
 
-		void handlePlayerInput(sf::Keyboard::Key key,bool isPressed);
-
 		sf::RenderWindow mWindow;
+
+		SystemManager* sysm;
 };

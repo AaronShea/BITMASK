@@ -17,6 +17,11 @@ void InputSystem::update(sf::Time deltaTime)
 	// Called once per tick
 }
 
+void InputSystem::processEvent(sf::Event eEvent)
+{
+	// Process events from SFML here
+}
+
 void InputSystem::added()
 {
 	// This system was added to the update loop

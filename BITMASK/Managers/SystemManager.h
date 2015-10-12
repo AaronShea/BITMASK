@@ -1,9 +1,8 @@
 #pragma once
 #include "SFML/Graphics.hpp"
+#include "Systems/System.h"
 #include <memory>
 #include <vector>
-
-class System;
 
 class SystemManager
 {
@@ -15,8 +14,16 @@ class SystemManager
 		SystemManager();
 		~SystemManager();
 
-		void addSystem(System* sys);
-		void removeSystem(System* sys);
+		/**
+		* Creates a new System and adds it to the update loop
+		*/
+		template<typename SystemType, typename ... Args>
+		System* addSystem(Args ... args)
+		{
+			systems.push_back(std::make_unique<SystemType>(this, args ...));
+			auto added = systems.back().get();
+			return added;
+		};
 
 		void subscribeToEvents(System* sys);
 		void unsubscribeToEvents(System* sys);

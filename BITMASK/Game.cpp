@@ -1,9 +1,11 @@
 #include "Game.h"
+#include "Systems/InputSystem.h"
 
 Game::Game()
 	: mWindow(sf::VideoMode(640, 480), "SFML Application")
 {
-
+	sysm = new SystemManager();
+	sysm->addSystem<InputSystem>();
 }
 
 void Game::run()
@@ -30,19 +32,7 @@ void Game::processEvents()
 	sf::Event wEvent;
 	while (mWindow.pollEvent(wEvent))
 	{
-
-		switch (wEvent.type)
-		{
-			case sf::Event::Closed:
-				mWindow.close();
-				break;
-			case sf::Event::KeyPressed:
-				handlePlayerInput(wEvent.key.code, true);
-				break;
-			case sf::Event::KeyReleased:
-				handlePlayerInput(wEvent.key.code, false);
-				break;
-		}
+		sysm->processEvent(wEvent);
 
 		if (wEvent.type == sf::Event::Closed)
 		{
@@ -51,13 +41,9 @@ void Game::processEvents()
 	}
 }
 
-void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
-{
-
-}
-
 void Game::update(sf::Time deltaTime)
 {
+	sysm->update(deltaTime);
 }
 
 void Game::render()
