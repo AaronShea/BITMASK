@@ -5,7 +5,7 @@ Game::Game()
 	: mWindow(sf::VideoMode(640, 480), "SFML Application")
 {
 	sysm = new SystemManager();
-	sysm->addSystem<InputSystem>();
+	sysm->subscribeToEvents(sysm->addSystem<InputSystem>());
 }
 
 void Game::run()

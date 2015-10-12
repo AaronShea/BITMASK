@@ -1,5 +1,6 @@
 #include "Managers/SystemManager.h"
 #include "InputSystem.h"
+#include <iostream>
 
 InputSystem::InputSystem(SystemManager* manager)
 	: System(manager)
@@ -17,9 +18,16 @@ void InputSystem::update(sf::Time deltaTime)
 	// Called once per tick
 }
 
-void InputSystem::processEvent(sf::Event eEvent)
+void InputSystem::processEvent(sf::Event& eEvent)
 {
-	// Process events from SFML here
+	switch (eEvent.type)
+	{
+		case sf::Event::KeyPressed:
+			std::cout << "KeyPressed: " << eEvent.key.code << std::endl;
+			break;
+		default:
+			break;
+	}
 }
 
 void InputSystem::added()

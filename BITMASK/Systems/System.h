@@ -23,5 +23,5 @@ class System
 		virtual void removeObj(const GameObject* obj) = 0;
 
 		virtual void update(sf::Time deltaTime) = 0;
-		virtual void processEvent(sf::Event eEvent) = 0;
+		virtual void processEvent(sf::Event& eEvent) = 0;
 };

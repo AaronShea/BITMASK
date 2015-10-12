@@ -13,5 +13,5 @@ class InputSystem : public System
 		void removeObj(const GameObject* obj) override;
 
 		void update(sf::Time deltaTime) override;
-		void processEvent(sf::Event eEvent) override;
+		void processEvent(sf::Event& eEvent) override;
 };
