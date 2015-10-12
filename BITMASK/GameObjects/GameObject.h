@@ -67,16 +67,15 @@ class GameObject
 		{
 			// Append it to the component vector
 			components.push_back(std::pair<int, std::unique_ptr<Component>>(compIndex, std::make_unique<CompFactoryType>(args ...)));
-			auto added = components.back();
 
 			// Set the component index of the last inserted component
-			added.second->id = compIndex;
+			components.back().second->id = compIndex;
 
 			// If we have not set this bit yet
-			if (!componentBitset.test(added.second->componentType))
+			if (!componentBitset.test(components.back().second->componentType))
 			{
 				// Set the bit for this component type
-				componentBitset.set(added.second->componentType, true);
+				componentBitset.set(components.back().second->componentType, true);
 			}
 
 			// Increment for the next component to insert
