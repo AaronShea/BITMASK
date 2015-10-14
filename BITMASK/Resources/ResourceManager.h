@@ -2,6 +2,7 @@
 #include <map>
 #include <memory>
 #include <assert.h>
+#include "physfs.h"
 #include "SFML/Graphics.hpp"
 
 template<typename Resource>
