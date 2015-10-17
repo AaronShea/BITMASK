@@ -74,12 +74,18 @@ if(UNIX)
 	target_link_libraries(BITMASK "-lc++abi -v")
 endif()
 
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
+
 # We require OpenGL
 find_package(OpenGL REQUIRED)
 target_link_libraries(BITMASK ${OPENGL_LIBRARIES})
 
+# We also need Lua
+find_package(Lua53 REQUIRED)
+target_link_libraries(BITMASK ${LUA53_LIBRARIES})
+include_directories(${LUA53_INCLUDE_DIR})
+
 # Detect and add SFML
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
 find_package(SFML 2 REQUIRED system window graphics network audio)
 find_package(PhysicsFS REQUIRED)
 if(SFML_FOUND)
@@ -88,7 +94,7 @@ if(SFML_FOUND)
 	target_link_libraries(BITMASK ${SFML_DEPENDENCIES})
 endif()
 
-# if(PHYSFS_FOUND)
+if(PHYSFS_FOUND)
 	target_link_libraries(BITMASK ${PHYSFS_LIBRARY})
 	include_directories(${PHYSFS_INCLUDE_DIR})
-# endif()
+endif()
