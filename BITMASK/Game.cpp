@@ -1,11 +1,20 @@
 #include "Game.h"
 #include "Systems/InputSystem.h"
+#include "Resources/ResourceManager.h"
+#include "physfs.h"
 
 Game::Game()
 	: mWindow(sf::VideoMode(640, 480), "SFML Application")
 {
 	sysm = new SystemManager();
 	sysm->subscribeToEvents(sysm->addSystem<InputSystem>());
+
+	PHYSFS_init("./");
+	PHYSFS_mount("./test.pack", "/test", true);
+
+	ResourceManager<sf::Image> TextResManager;
+
+	TextResManager.load("testpng", "/test/test.png");
 }
 
 void Game::run()
