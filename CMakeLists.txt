@@ -22,7 +22,8 @@ set(BITMASK_CMP_SRC
 	"BITMASK/Components/TransformComponent.h"
 	"BITMASK/Components/TransformComponent.cpp"
 	"BITMASK/Components/DrawableComponent.h"
-	"BITMASK/Components/DrawableComponent.cpp"
+	"BITMASK/Components/ShapeComponent.h"
+	"BITMASK/Components/ShapeComponent.cpp"
 )
 source_group("Components" FILES ${BITMASK_CMP_SRC})
 
