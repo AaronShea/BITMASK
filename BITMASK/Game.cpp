@@ -1,20 +1,33 @@
 #include "Game.h"
+#include "Managers/SystemManager.h"
 #include "Systems/InputSystem.h"
+#include "Systems/RenderSystem.h"
 #include "Resources/ResourceManager.h"
 #include "physfs.h"
 
 Game::Game()
-	: mWindow(sf::VideoMode(640, 480), "SFML Application")
+	: mWindow(sf::VideoMode(1280, 720), "SFML Application")
 {
+	// Limit the framerate of the window to 200
+	mWindow.setFramerateLimit(200);
+
+	GameObject* mPlayer = new GameObject();
+
 	sysm = new SystemManager();
+
+	// Add input system
 	sysm->subscribeToEvents(sysm->addSystem<InputSystem>());
 
-	PHYSFS_init("./");
-	PHYSFS_mount("./test.pack", "/test", true);
+	sf::Shape* testShape = new sf::CircleShape(40.f);
+	testShape->setFillColor(sf::Color::Cyan);
+	testShape->setPosition(100.f, 100.f);
 
-	ResourceManager<sf::Image> TextResManager;
+	// Add render system
+	auto rendersystem = sysm->addSystem<RenderSystem>(&mWindow);
+	mPlayer->addComponent<ShapeComponent>(testShape);
+	mPlayer->addComponent<TransformComponent>(0.f, 0.f, 0.f);
 
-	TextResManager.load("testpng", "/test/test.png");
+	rendersystem->addObj(mPlayer);
 }
 
 void Game::run()
@@ -57,6 +70,5 @@ void Game::update(sf::Time deltaTime)
 
 void Game::render()
 {
-	mWindow.clear();
 	mWindow.display();
 }

@@ -8,7 +8,6 @@ class SystemManager;
 class System
 {
 	protected:
-		std::vector<GameObject*> objects;
 		SystemManager* manager;
 
 	public:
@@ -19,6 +18,7 @@ class System
 
 		virtual void added() = 0;
 		virtual void removed() = 0;
+
 		virtual void addObj(GameObject* obj) = 0;
 		virtual void removeObj(const GameObject* obj) = 0;
 

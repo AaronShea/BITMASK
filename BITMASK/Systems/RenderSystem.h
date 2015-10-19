@@ -1,11 +1,17 @@
 #pragma once
 #include "System.h"
 
-class InputSystem : public System
+class DrawableComponent;
+
+class RenderSystem : public System
 {
+	private:
+		std::vector<DrawableComponent*> comps;
+		sf::RenderTarget* target;
+
 	public:
-		InputSystem(SystemManager* manager);
-		~InputSystem();
+		RenderSystem(SystemManager* manager, sf::RenderTarget* renderTarget);
+		~RenderSystem();
 
 		void added() override;
 		void removed() override;

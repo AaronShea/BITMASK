@@ -4,7 +4,9 @@
 #include "Resources/ResourceManager.h"
 #include "GameObjects/GameObject.h"
 #include "Components/TransformComponent.h"
-#include "Managers/SystemManager.h"
+#include "Components/ShapeComponent.h"
+
+class SystemManager;
 
 class Game 
 {

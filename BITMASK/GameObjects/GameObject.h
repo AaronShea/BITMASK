@@ -25,23 +25,23 @@ class GameObject
 		std::bitset<256> componentBitset;
 
 		/**
-		* Finds the first component in the map that matches the type given in the template argument
+		* Find components in the map that matches the type given in the template argument
 		*/
 		template<typename CompType>
-		CompType* getSingleComponent()
+		void getComponents(std::vector<CompType*>& outVect)
 		{
 			// Loop through all components
 			for (auto& comp : components)
 			{
 			    // Make sure this is the right type of component we are looking for
-				auto testPtr = dynamic_cast<CompType*>(comp.second);
+				auto testPtr = dynamic_cast<CompType*>(comp.second.get());
 				if (testPtr)
 				{
-					return testPtr;
+					// Add to the dest vector
+					outVect.push_back(testPtr);
 				}
 			}
 			sf::err() << "Component type " << typeid(CompType).name() << " not found in entity!";
-			return nullptr;
 		}
 
 		/**

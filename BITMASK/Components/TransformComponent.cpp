@@ -1,4 +1,3 @@
-#include "Component.h"
 #include "TransformComponent.h"
 
 TransformComponent::TransformComponent(float x, float y, float rot)
