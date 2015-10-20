@@ -1,9 +1,12 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 
-class DrawableComponent
+namespace bit
 {
-	public:
-		virtual ~DrawableComponent() {};
-		virtual sf::Drawable& getDrawData() = 0;
-};
+	class DrawableComponent
+	{
+		public:
+			virtual ~DrawableComponent() {};
+			virtual sf::Drawable& getDrawData() = 0;
+	};
+}

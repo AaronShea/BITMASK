@@ -2,23 +2,23 @@
 #include "InputSystem.h"
 #include <iostream>
 
-InputSystem::InputSystem(SystemManager* manager)
+bit::InputSystem::InputSystem(SystemManager* manager)
 	: System(manager)
 {
 	// Constructor
 }
 
-InputSystem::~InputSystem()
+bit::InputSystem::~InputSystem()
 {
 	// Deconstructor
 }
 
-void InputSystem::update(sf::Time deltaTime)
+void bit::InputSystem::update(sf::Time deltaTime)
 {
 	// Called once per tick
 }
 
-void InputSystem::processEvent(sf::Event& eEvent)
+void bit::InputSystem::processEvent(sf::Event& eEvent)
 {
 	switch (eEvent.type)
 	{
@@ -31,7 +31,7 @@ void InputSystem::processEvent(sf::Event& eEvent)
 }
 
 
-void InputSystem::addObj(GameObject* obj)
+void bit::InputSystem::addObj(GameObject* obj)
 {
 	// Ensure we have the required components
 	//if (!obj->componentBitset.test(ComponentIndex::TRANSFORM_COMPONENT))
@@ -44,7 +44,7 @@ void InputSystem::addObj(GameObject* obj)
 	//objects.push_back(obj);
 };
 
-void InputSystem::removeObj(const GameObject* obj)
+void bit::InputSystem::removeObj(const GameObject* obj)
 {
 	// Remove an object from being updated in this system
 	//auto t = find_if(objects.begin(), objects.end(), [obj](GameObject*& element){ return element == obj; });
@@ -56,12 +56,12 @@ void InputSystem::removeObj(const GameObject* obj)
 	//}
 };
 
-void InputSystem::added()
+void bit::InputSystem::added()
 {
 	// This system was added to the update loop
 }
 
-void InputSystem::removed()
+void bit::InputSystem::removed()
 {
 	// Removed from the update loop
 }

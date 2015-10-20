@@ -2,6 +2,6 @@
 
 int main()
 {
-	Game mainGame;
+	bit::Game mainGame;
 	mainGame.run();
 }

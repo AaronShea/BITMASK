@@ -5,32 +5,19 @@
 #include "Resources/ResourceManager.h"
 #include "physfs.h"
 
-Game::Game()
+bit::Game::Game()
 	: mWindow(sf::VideoMode(1280, 720), "SFML Application")
 {
 	// Limit the framerate of the window to 200
 	mWindow.setFramerateLimit(200);
 
-	GameObject* mPlayer = new GameObject();
-
 	sysm = new SystemManager();
 
 	// Add input system
 	sysm->subscribeToEvents(sysm->addSystem<InputSystem>());
-
-	sf::Shape* testShape = new sf::CircleShape(40.f);
-	testShape->setFillColor(sf::Color::Cyan);
-	testShape->setPosition(100.f, 100.f);
-
-	// Add render system
-	auto rendersystem = sysm->addSystem<RenderSystem>(&mWindow);
-	mPlayer->addComponent<ShapeComponent>(testShape);
-	mPlayer->addComponent<TransformComponent>(0.f, 0.f, 0.f);
-
-	rendersystem->addObj(mPlayer);
 }
 
-void Game::run()
+void bit::Game::run()
 {
 	sf::Clock clock;
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
@@ -49,7 +36,7 @@ void Game::run()
 	}
 }
 
-void Game::processEvents()
+void bit::Game::processEvents()
 {
 	sf::Event wEvent;
 	while (mWindow.pollEvent(wEvent))
@@ -63,12 +50,12 @@ void Game::processEvents()
 	}
 }
 
-void Game::update(sf::Time deltaTime)
+void bit::Game::update(sf::Time deltaTime)
 {
 	sysm->update(deltaTime);
 }
 
-void Game::render()
+void bit::Game::render()
 {
 	mWindow.display();
 }

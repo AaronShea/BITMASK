@@ -1,6 +1,6 @@
 #include "ShapeComponent.h"
 
-ShapeComponent::ShapeComponent(sf::Shape* constrShape)
+bit::ShapeComponent::ShapeComponent(sf::Shape* constrShape)
 	: DrawableComponent(),
 	Component()
 {
@@ -10,12 +10,12 @@ ShapeComponent::ShapeComponent(sf::Shape* constrShape)
 	this->componentType = ComponentIndex::DRAWABLE_COMPONENT;
 }
 
-ShapeComponent::~ShapeComponent()
+bit::ShapeComponent::~ShapeComponent()
 {
 
 }
 
-sf::Drawable& ShapeComponent::getDrawData()
+sf::Drawable& bit::ShapeComponent::getDrawData()
 {
 	return *shapeData;
 }

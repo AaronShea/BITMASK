@@ -1,6 +1,6 @@
 #include "TransformComponent.h"
 
-TransformComponent::TransformComponent(float x, float y, float rot)
+bit::TransformComponent::TransformComponent(float x, float y, float rot)
 	: Component()
 {
 	this->pos.x = x;
@@ -10,7 +10,7 @@ TransformComponent::TransformComponent(float x, float y, float rot)
 	this->componentType = ComponentIndex::TRANSFORM_COMPONENT;
 }
 
-TransformComponent::~TransformComponent()
+bit::TransformComponent::~TransformComponent()
 {
 	// Deconstructor Transform
 }

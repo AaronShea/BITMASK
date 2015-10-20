@@ -2,19 +2,19 @@
 #include "RenderSystem.h"
 #include "SFML/Graphics.hpp"
 
-RenderSystem::RenderSystem(SystemManager* manager, sf::RenderTarget* renderTarget)
+bit::RenderSystem::RenderSystem(SystemManager* manager, sf::RenderTarget* renderTarget)
 	: System(manager),
 	target(renderTarget)
 {
 
 }
 
-RenderSystem::~RenderSystem()
+bit::RenderSystem::~RenderSystem()
 {
 	
 }
 
-void RenderSystem::update(sf::Time deltaTime)
+void bit::RenderSystem::update(sf::Time deltaTime)
 {
 	target->clear();
 	for (auto& drawable : comps)
@@ -23,9 +23,9 @@ void RenderSystem::update(sf::Time deltaTime)
 	}
 }
 
-void RenderSystem::processEvent(sf::Event& eEvent) { }
+void bit::RenderSystem::processEvent(sf::Event& eEvent) { }
 
-void RenderSystem::addObj(GameObject* obj)
+void bit::RenderSystem::addObj(GameObject* obj)
 {
 	// Ensure we have the required components
 	if (!obj->componentBitset.test(ComponentIndex::DRAWABLE_COMPONENT))
@@ -37,7 +37,7 @@ void RenderSystem::addObj(GameObject* obj)
 	obj->getComponents<DrawableComponent>(comps);
 };
 
-void RenderSystem::removeObj(const GameObject* obj)
+void bit::RenderSystem::removeObj(const GameObject* obj)
 {
 	// Remove an object from being updated in this system
 	//auto t = find_if(objects.begin(), objects.end(), [obj](GameObject*& element){ return element == obj; });
@@ -49,12 +49,12 @@ void RenderSystem::removeObj(const GameObject* obj)
 	//}
 };
 
-void RenderSystem::added()
+void bit::RenderSystem::added()
 {
 	// This system was added to the update loop
 }
 
-void RenderSystem::removed()
+void bit::RenderSystem::removed()
 {
 	// Removed from the update loop
 }

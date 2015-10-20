@@ -1,17 +1,17 @@
 #include "Systems/System.h"
 #include "SystemManager.h"
 
-SystemManager::SystemManager()
+bit::SystemManager::SystemManager()
 {
 
 }
 
-SystemManager::~SystemManager()
+bit::SystemManager::~SystemManager()
 {
 	
 }
 
-void SystemManager::update(sf::Time deltaTime)
+void bit::SystemManager::update(sf::Time deltaTime)
 {
 	for (auto& sys : systems)
 	{
@@ -19,7 +19,7 @@ void SystemManager::update(sf::Time deltaTime)
 	}
 }
 
-void SystemManager::processEvent(sf::Event eEvent)
+void bit::SystemManager::processEvent(sf::Event eEvent)
 {
 	for (auto& sys : eventListeners)
 	{
@@ -27,12 +27,12 @@ void SystemManager::processEvent(sf::Event eEvent)
 	}
 }
 
-void SystemManager::subscribeToEvents(System* sys)
+void bit::SystemManager::subscribeToEvents(System* sys)
 {
 	eventListeners.push_back(sys);
 }
 
-void SystemManager::unsubscribeToEvents(System* sys)
+void bit::SystemManager::unsubscribeToEvents(System* sys)
 {
 	// Remove a system from listening to events
 	auto t = find_if(eventListeners.begin(), eventListeners.end(), [sys](System*& element){ return element == sys; });

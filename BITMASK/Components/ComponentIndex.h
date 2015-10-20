@@ -1,5 +1,8 @@
-enum ComponentIndex
+namespace bit
 {
-	TRANSFORM_COMPONENT = 1,
-	DRAWABLE_COMPONENT = 2
-};
+	enum ComponentIndex
+	{
+		TRANSFORM_COMPONENT = 1,
+		DRAWABLE_COMPONENT = 2
+	};
+}

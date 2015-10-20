@@ -6,23 +6,26 @@
 #include "Components/TransformComponent.h"
 #include "Components/ShapeComponent.h"
 
-class SystemManager;
-
-class Game 
+namespace bit
 {
-	public:
-		Game();
-		void run();
+	class SystemManager;
 
-	private:
-		void processEvents();
-		void render();
-		void update(sf::Time deltaTime);
+	class Game
+	{
+		public:
+			Game();
+			void run();
 
-		// Fixed max framerate is set here
-		sf::Time timePerFrame = sf::seconds(1.f / 120.f);
+		private:
+			void processEvents();
+			void render();
+			void update(sf::Time deltaTime);
 
-		sf::RenderWindow mWindow;
+			// Fixed max framerate is set here
+			sf::Time timePerFrame = sf::seconds(1.f / 120.f);
 
-		SystemManager* sysm;
-};
+			sf::RenderWindow mWindow;
+
+			SystemManager* sysm;
+	};
+}

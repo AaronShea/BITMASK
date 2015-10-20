@@ -2,13 +2,16 @@
 #include "SFML/Graphics.hpp"
 #include "Component.h"
 
-class TransformComponent : public Component
+namespace bit
 {
-	private:
-		sf::Vector2f pos;
-		float rot;
+	class TransformComponent : public Component
+	{
+		private:
+			sf::Vector2f pos;
+			float rot;
 
-	public:
-		TransformComponent(float x, float y, float rot);
-		~TransformComponent() override;
-};
+		public:
+			TransformComponent(float x, float y, float rot);
+			~TransformComponent() override;
+	};
+}

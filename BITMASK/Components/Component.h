@@ -2,18 +2,21 @@
 #include "SFML/System.hpp"
 #include "ComponentIndex.h"
 
-class Component
+namespace bit
 {
+	class Component
+	{
 
-	private:
+		private:
 
-	public:
+		public:
 
-		Component() {};
+			Component() {};
 
-		virtual ~Component() {};
+			virtual ~Component() {};
 
-		int id = 0;
+			int id = 0;
 
-		int componentType = 0;
-};
+			int componentType = 0;
+	};
+}
