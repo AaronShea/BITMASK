@@ -90,6 +90,11 @@ find_package(Lua53 REQUIRED)
 target_link_libraries(BITMASK ${LUA53_LIBRARIES})
 include_directories(${LUA53_INCLUDE_DIR})
 
+# Box2D
+find_package(BOX2D REQUIRED)
+include_directories(${BOX2D_INCLUDE_DIRS})
+target_link_libraries(BITMASK ${BOX2D_LIBRARY})
+
 # Detect and add SFML
 find_package(SFML 2 REQUIRED system window graphics network audio)
 find_package(PhysicsFS REQUIRED)
