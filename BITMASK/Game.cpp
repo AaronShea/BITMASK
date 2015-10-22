@@ -3,7 +3,6 @@
 #include "Systems/InputSystem.h"
 #include "Systems/RenderSystem.h"
 #include "Resources/ResourceManager.h"
-#include "physfs.h"
 
 bit::Game::Game()
 	: mWindow(sf::VideoMode(1280, 720), "SFML Application")
