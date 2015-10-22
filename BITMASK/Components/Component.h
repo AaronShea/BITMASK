@@ -15,6 +15,9 @@ namespace bit
 
 			virtual ~Component() {};
 
+			virtual void added() = 0;
+			virtual void removed() = 0;
+
 			int id = 0;
 
 			int componentType = 0;

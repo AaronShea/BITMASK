@@ -14,3 +14,13 @@ bit::TransformComponent::~TransformComponent()
 {
 	// Deconstructor Transform
 }
+
+void bit::TransformComponent::added()
+{
+
+}
+
+void bit::TransformComponent::removed()
+{
+
+}

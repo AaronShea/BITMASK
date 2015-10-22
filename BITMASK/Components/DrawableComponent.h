@@ -8,5 +8,8 @@ namespace bit
 		public:
 			virtual ~DrawableComponent() {};
 			virtual sf::Drawable& getDrawData() = 0;
+
+			virtual void added() = 0;
+			virtual void removed() = 0;
 	};
 }

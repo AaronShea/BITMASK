@@ -15,6 +15,16 @@ bit::ShapeComponent::~ShapeComponent()
 
 }
 
+void bit::ShapeComponent::added()
+{
+
+}
+
+void bit::ShapeComponent::removed()
+{
+
+}
+
 sf::Drawable& bit::ShapeComponent::getDrawData()
 {
 	return *shapeData;

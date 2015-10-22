@@ -13,5 +13,8 @@ namespace bit
 		public:
 			TransformComponent(float x, float y, float rot);
 			~TransformComponent() override;
+
+			void added() override;
+			void removed() override;
 	};
 }

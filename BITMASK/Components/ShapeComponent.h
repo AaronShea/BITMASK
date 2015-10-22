@@ -12,6 +12,10 @@ namespace bit
 		public:
 			ShapeComponent(sf::Shape* constrShape);
 			~ShapeComponent() override;
+
+			void added() override;
+			void removed() override;
+
 			sf::Drawable& getDrawData() override;
 	};
 }

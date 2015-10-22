@@ -41,6 +41,9 @@ namespace bit
 					{
 						// Add to the dest vector
 						outVect.push_back(testPtr);
+
+						// Now this component is part of some kind of system
+						testPtr->added();
 					}
 				}
 				sf::err() << "Component type " << typeid(CompType).name() << " not found in entity!";
@@ -97,6 +100,9 @@ namespace bit
 
 				// Unset this component type bit 
 				componentBitset.set(t->second->componentType, false);
+
+				// Tell the component it's been removed
+				t->second->removed();
 
 				// Remove pointer pair from the vector, this will destroy the component as well
 				components.erase(t);
