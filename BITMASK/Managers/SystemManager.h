@@ -24,6 +24,10 @@ namespace bit
 			{
 				systems.push_back(std::make_unique<SystemType>(this, args ...));
 				auto added = systems.back().get();
+
+				// Tell the system it was added
+				added->added();
+
 				return added;
 			};
 

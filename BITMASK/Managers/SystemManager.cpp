@@ -40,6 +40,8 @@ void bit::SystemManager::unsubscribeToEvents(System* sys)
 	// If we actually found a result
 	if (!(t == eventListeners.end()))
 	{
+		// Tell the System it will be removed
+		sys->removed();
 		eventListeners.erase(t);
 	}
 }
