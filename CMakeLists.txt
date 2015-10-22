@@ -24,6 +24,8 @@ set(BITMASK_CMP_SRC
 	"BITMASK/Components/DrawableComponent.h"
 	"BITMASK/Components/ShapeComponent.h"
 	"BITMASK/Components/ShapeComponent.cpp"
+	"BITMASK/Components/PhysicsBodyComponent.h"
+	"BITMASK/Components/PhysicsBodyComponent.cpp"
 )
 source_group("Components" FILES ${BITMASK_CMP_SRC})
 
@@ -34,6 +36,8 @@ set(BITMASK_SYS_SRC
 	"BITMASK/Systems/InputSystem.cpp"
 	"BITMASK/Systems/RenderSystem.h"
 	"BITMASK/Systems/RenderSystem.cpp"
+	"BITMASK/Systems/PhysicsSystem.h"
+	"BITMASK/Systems/PhysicsSystem.cpp"
 )
 source_group("Systems" FILES ${BITMASK_SYS_SRC})
 
