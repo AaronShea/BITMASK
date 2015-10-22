@@ -47,7 +47,7 @@ void bit::RenderSystem::removeObj(const GameObject* obj)
 	//{
 	//	objects.erase(t);
 	//}
-};
+}
 
 void bit::RenderSystem::added()
 {
