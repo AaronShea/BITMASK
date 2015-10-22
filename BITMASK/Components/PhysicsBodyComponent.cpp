@@ -10,9 +10,19 @@ bit::PhysicsBodyComponent::PhysicsBodyComponent(b2BodyType bodyType)
 	physBodyDef.type = bodyType;
 }
 
-b2BodyDef* bit::PhysicsBodyComponent::getPhysBody()
+b2BodyDef* bit::PhysicsBodyComponent::getPhysBodyDef()
 {
 	return &physBodyDef;
+}
+
+b2Body* bit::PhysicsBodyComponent::getPhysBody()
+{
+	return physBody;
+}
+
+void bit::PhysicsBodyComponent::setPhysBody(b2Body* newBody)
+{
+	this->physBody = newBody;
 }
 
 bit::PhysicsBodyComponent::~PhysicsBodyComponent()

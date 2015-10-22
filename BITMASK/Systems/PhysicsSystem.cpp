@@ -37,7 +37,24 @@ void bit::PhysicsSystem::addObj(GameObject* objToAdd)
 		return;
 	}
 
-	objToAdd->getComponents<PhysicsBodyComponent>(bodyComps);
+	std::vector<PhysicsBodyComponent*> tempVec;
+
+	objToAdd->getComponents<PhysicsBodyComponent>(tempVec);
+
+	for (auto& bodyComp : tempVec)
+	{
+		// Create a new body based on the def
+		b2Body* body = physicsWorld->CreateBody(bodyComp->getPhysBodyDef());
+
+		// Now set the component physBody pointer to the actual physBody
+		bodyComp->setPhysBody(body);
+
+		// Add to the system vector
+		bodyComps.push_back(bodyComp);
+	}
+	
+	// Now get its body def and add it to the world
+	
 }
 
 void bit::PhysicsSystem::removeObj(const GameObject* obj)

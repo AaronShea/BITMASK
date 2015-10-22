@@ -8,6 +8,7 @@ namespace bit
 	{
 		private:
 			b2BodyDef physBodyDef;
+			b2Body* physBody;
 
 		public:
 			PhysicsBodyComponent(b2BodyType bodyType);
@@ -16,6 +17,9 @@ namespace bit
 			void added() override;
 			void removed() override;
 
-			b2BodyDef* getPhysBody();
+			b2BodyDef* getPhysBodyDef();
+			b2Body* getPhysBody();
+
+			void setPhysBody(b2Body* newBody);
 	};
 }
