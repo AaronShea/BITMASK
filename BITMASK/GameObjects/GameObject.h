@@ -16,8 +16,6 @@ namespace bit
 			// Current index for next component space in map
 			int compIndex = 0;
 
-
-
 		public:
 
 			int objectId = 0;
@@ -46,7 +44,25 @@ namespace bit
 						testPtr->added();
 					}
 				}
-				sf::err() << "Component type " << typeid(CompType).name() << " not found in entity!";
+			}
+
+			/**
+			* Gets the first component of this type and returns a normal pointer to it
+			*/
+			template<typename CompType>
+			CompType* getSingleComponent()
+			{
+				for (auto& comp : components)
+				{
+					// Make sure this is the right type of component we are looking for
+					auto testPtr = dynamic_cast<CompType*>(comp.second.get());
+					if (testPtr)
+					{
+						return testPtr;
+					}
+				}
+
+				return nullptr;
 			}
 
 			/**

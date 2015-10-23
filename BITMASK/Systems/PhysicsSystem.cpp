@@ -1,5 +1,6 @@
 #include "PhysicsSystem.h"
 #include "Components/PhysicsBodyComponent.h"
+#include "Components/TransformComponent.h"
 
 bit::PhysicsSystem::PhysicsSystem(SystemManager* manager, float gravityX, float gravityY)
 	: System(manager)
@@ -15,6 +16,8 @@ void bit::PhysicsSystem::update(sf::Time deltaTime)
 {
 	// Step the physics world (simulation)
 	physicsWorld->Step(static_cast<float32>(deltaTime.asMilliseconds()), 6, 2);
+
+	// Update all pairs of components
 }
 
 void bit::PhysicsSystem::processEvent(sf::Event& eEvent) { }
@@ -31,30 +34,25 @@ void bit::PhysicsSystem::removed()
 
 void bit::PhysicsSystem::addObj(GameObject* objToAdd)
 {
-	if (!objToAdd->componentBitset.test(ComponentIndex::PHYSBODY_COMPONENT))
+	// We need both a transform component AND a physics component
+	if (!objToAdd->componentBitset.test(ComponentIndex::PHYSBODY_COMPONENT) && !objToAdd->componentBitset.test(ComponentIndex::TRANSFORM_COMPONENT))
 	{
 		// We don't care about this object
 		return;
 	}
 
-	std::vector<PhysicsBodyComponent*> tempVec;
+	// Grab the phys and transform component pointers
+	PhysicsBodyComponent* physComp = objToAdd->getSingleComponent<PhysicsBodyComponent>();
+	TransformComponent* transformComp = objToAdd->getSingleComponent<TransformComponent>();
 
-	objToAdd->getComponents<PhysicsBodyComponent>(tempVec);
+	// Create a new body based on the def
+	b2Body* body = physicsWorld->CreateBody(physComp->getPhysBodyDef());
 
-	for (auto& bodyComp : tempVec)
-	{
-		// Create a new body based on the def
-		b2Body* body = physicsWorld->CreateBody(bodyComp->getPhysBodyDef());
+	// Now set the component physBody pointer to the actual physBody
+	physComp->setPhysBody(body);
 
-		// Now set the component physBody pointer to the actual physBody
-		bodyComp->setPhysBody(body);
-
-		// Add to the system vector
-		bodyComps.push_back(bodyComp);
-	}
-	
-	// Now get its body def and add it to the world
-	
+	// Add to the system vector
+	bodyComps.push_back(physComp);
 }
 
 void bit::PhysicsSystem::removeObj(const GameObject* obj)

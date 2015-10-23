@@ -11,7 +11,7 @@ bit::Game::Game()
 
 	sysm = new SystemManager();
 
-	GameObject* mPlayer = new GameObject();
+	GameObject* testCircle = new GameObject();
 
 	// Add input system
 	sysm->subscribeToEvents(sysm->addSystem<InputSystem>());
@@ -21,11 +21,11 @@ bit::Game::Game()
 	testShape->setPosition(100.f, 100.f);
 
 	renderSys = new RenderSystem(sysm, &mWindow);
-	mPlayer->addComponent<ShapeComponent>(testShape);
-	mPlayer->addComponent<TransformComponent>(0.f, 0.f, 0.f);
-	mPlayer->addComponent<PhysicsBodyComponent>(b2BodyType::b2_dynamicBody);
+	testCircle->addComponent<ShapeComponent>(testShape);
+	testCircle->addComponent<TransformComponent>(0.f, 0.f, 0.f);
+	testCircle->addComponent<PhysicsBodyComponent>(b2BodyType::b2_dynamicBody);
 
-	renderSys->addObj(mPlayer);
+	renderSys->addObj(testCircle);
 
 }
 
@@ -36,7 +36,6 @@ void bit::Game::run()
 
 	while (mWindow.isOpen())
 	{
-		processEvents();
 		timeSinceLastUpdate += clock.restart();
 		while (timeSinceLastUpdate > timePerFrame)
 		{
