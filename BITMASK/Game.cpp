@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Managers/SystemManager.h"
 #include "Systems/InputSystem.h"
+#include "Systems/PhysicsSystem.h"
 #include "Resources/ResourceManager.h"
 
 bit::Game::Game()
@@ -15,6 +16,7 @@ bit::Game::Game()
 
 	// Add input system
 	sysm->subscribeToEvents(sysm->addSystem<InputSystem>());
+	System* physSystem = sysm->addSystem<PhysicsSystem>();
 
 	sf::Shape* testShape = new sf::CircleShape(40.f);
 	testShape->setFillColor(sf::Color::Cyan);

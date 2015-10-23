@@ -21,5 +21,7 @@ namespace bit
 			int id = 0;
 
 			int componentType = 0;
+
+			bool dirty = false;
 	};
 }

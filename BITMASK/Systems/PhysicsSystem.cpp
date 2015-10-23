@@ -12,12 +12,23 @@ bit::PhysicsSystem::PhysicsSystem(SystemManager* manager, float gravityX, float 
 	physicsWorld->SetAllowSleeping(true);
 }
 
+bit::PhysicsSystem::~PhysicsSystem()
+{
+
+}
+
 void bit::PhysicsSystem::update(sf::Time deltaTime)
 {
 	// Step the physics world (simulation)
 	physicsWorld->Step(static_cast<float32>(deltaTime.asMilliseconds()), 6, 2);
 
 	// Update all pairs of components
+	for (auto& bodyPair : bodyComps)
+	{
+		// Apply the position of the PhysicsBody to the transform component
+		bodyPair.second->pos.x = bodyPair.first->getPhysBody()->GetPosition().x * RATIO;
+		bodyPair.second->pos.y = bodyPair.first->getPhysBody()->GetPosition().y * RATIO;
+	}
 }
 
 void bit::PhysicsSystem::processEvent(sf::Event& eEvent) { }
@@ -45,14 +56,15 @@ void bit::PhysicsSystem::addObj(GameObject* objToAdd)
 	PhysicsBodyComponent* physComp = objToAdd->getSingleComponent<PhysicsBodyComponent>();
 	TransformComponent* transformComp = objToAdd->getSingleComponent<TransformComponent>();
 
+	// TODO - Add them to an std::pair
+	auto newPair = std::pair<PhysicsBodyComponent*, TransformComponent*>(physComp, transformComp);
+	bodyComps.push_back(newPair);
+
 	// Create a new body based on the def
 	b2Body* body = physicsWorld->CreateBody(physComp->getPhysBodyDef());
 
 	// Now set the component physBody pointer to the actual physBody
 	physComp->setPhysBody(body);
-
-	// Add to the system vector
-	bodyComps.push_back(physComp);
 }
 
 void bit::PhysicsSystem::removeObj(const GameObject* obj)

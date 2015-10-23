@@ -39,14 +39,15 @@ void bit::RenderSystem::addObj(GameObject* obj)
 
 void bit::RenderSystem::removeObj(const GameObject* obj)
 {
+	// TODO - Need to remove components, not the the actual object!
 	// Remove an object from being updated in this system
-	//auto t = find_if(objects.begin(), objects.end(), [obj](GameObject*& element){ return element == obj; });
+	// auto t = find_if(objects.begin(), objects.end(), [obj](GameObject*& element){ return element == obj; });
 
-	// If we actually found a result
-	//if (!(t == objects.end()))
-	//{
-	//	objects.erase(t);
-	//}
+	// // If we actually found a result
+	// if (!(t == objects.end()))
+	// {
+	// 	objects.erase(t);
+	// }
 }
 
 void bit::RenderSystem::added()

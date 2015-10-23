@@ -2,15 +2,18 @@
 #include "Box2D/Box2D.h"
 #include "System.h"
 
+#define RATIO 30.f
+
 namespace bit
 {
 
 	class PhysicsBodyComponent;
+	class TransformComponent;
 
 	class PhysicsSystem : public System
 	{
 		private:
-			std::vector<PhysicsBodyComponent*> bodyComps;
+			std::vector<std::pair<PhysicsBodyComponent*, TransformComponent*>> bodyComps;
 			b2World* physicsWorld;
 
 		public:
