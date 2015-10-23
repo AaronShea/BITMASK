@@ -3,8 +3,12 @@
 
 #include "Resources/ResourceManager.h"
 #include "GameObjects/GameObject.h"
+
+#include "Systems/RenderSystem.h"
+
 #include "Components/TransformComponent.h"
 #include "Components/ShapeComponent.h"
+#include "Components/PhysicsBodyComponent.h"
 
 namespace bit
 {
@@ -27,5 +31,6 @@ namespace bit
 			sf::RenderWindow mWindow;
 
 			SystemManager* sysm;
+			RenderSystem* renderSys;
 	};
 }

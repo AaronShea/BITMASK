@@ -25,6 +25,16 @@ void bit::PhysicsBodyComponent::setPhysBody(b2Body* newBody)
 	this->physBody = newBody;
 }
 
+b2Fixture* bit::PhysicsBodyComponent::addFixtureToBody(b2FixtureDef* fixDef)
+{
+	if (this->physBody == nullptr)
+	{
+		throw std::runtime_error("PhysicsBodyComponent::addFixtureToBody No body to this component yet!");
+	}
+
+	return this->physBody->CreateFixture(fixDef);
+}
+
 bit::PhysicsBodyComponent::~PhysicsBodyComponent()
 {
 	// Deconstructor for body component

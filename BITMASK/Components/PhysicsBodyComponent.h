@@ -21,5 +21,6 @@ namespace bit
 			b2Body* getPhysBody();
 
 			void setPhysBody(b2Body* newBody);
+			b2Fixture* addFixtureToBody(b2FixtureDef* fixDef);
 	};
 }
