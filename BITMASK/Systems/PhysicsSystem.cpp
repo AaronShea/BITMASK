@@ -28,6 +28,9 @@ void bit::PhysicsSystem::update(sf::Time deltaTime)
 		// Apply the position of the PhysicsBody to the transform component
 		bodyPair.second->pos.x = bodyPair.first->getPhysBody()->GetPosition().x * RATIO;
 		bodyPair.second->pos.y = bodyPair.first->getPhysBody()->GetPosition().y * RATIO;
+
+		// Also apply the rotation/angle
+		bodyPair.second->rot = bodyPair.first->getPhysBody()->GetAngle();
 	}
 }
 

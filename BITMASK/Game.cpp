@@ -18,16 +18,22 @@ bit::Game::Game()
 	sysm->subscribeToEvents(sysm->addSystem<InputSystem>());
 	System* physSystem = sysm->addSystem<PhysicsSystem>();
 
+	// Make a really simple test shape
 	sf::Shape* testShape = new sf::CircleShape(40.f);
 	testShape->setFillColor(sf::Color::Cyan);
 	testShape->setPosition(100.f, 100.f);
 
+	// Make a test render system
 	renderSys = new RenderSystem(sysm, &mWindow);
+
+	// Add some components to the circle
 	testCircle->addComponent<ShapeComponent>(testShape);
 	testCircle->addComponent<TransformComponent>(0.f, 0.f, 0.f);
 	testCircle->addComponent<PhysicsBodyComponent>(b2BodyType::b2_dynamicBody);
 
+	// Add the test object to the systems that may care about it
 	renderSys->addObj(testCircle);
+	physSystem->addObj(testCircle);
 
 }
 
