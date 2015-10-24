@@ -19,18 +19,37 @@ bit::PhysicsSystem::~PhysicsSystem()
 
 void bit::PhysicsSystem::update(sf::Time deltaTime)
 {
+	for (auto& bodyPair : bodyComps)
+	{
+		// Check each pair to make sure we have up to date locations of the bodies
+		if (bodyPair.second->dirty)
+		{
+			// If the transform component is already dirty, we need to update the physics body
+			bodyPair.first->getPhysBody()->SetTransform(
+				b2Vec2(bodyPair.second->pos.x / RATIO, bodyPair.second->pos.y / RATIO),
+				bodyPair.second->rot
+			);
+		}
+	}
+
 	// Step the physics world (simulation)
 	physicsWorld->Step(static_cast<float32>(deltaTime.asMilliseconds()), 6, 2);
 
 	// Update all pairs of components
 	for (auto& bodyPair : bodyComps)
 	{
-		// Apply the position of the PhysicsBody to the transform component
-		bodyPair.second->pos.x = bodyPair.first->getPhysBody()->GetPosition().x * RATIO;
-		bodyPair.second->pos.y = bodyPair.first->getPhysBody()->GetPosition().y * RATIO;
+		if (bodyPair.first->getPhysBody()->IsAwake())
+		{
+			// Apply the position of the PhysicsBody to the transform component
+			bodyPair.second->pos.x = bodyPair.first->getPhysBody()->GetPosition().x * RATIO;
+			bodyPair.second->pos.y = bodyPair.first->getPhysBody()->GetPosition().y * RATIO;
 
-		// Also apply the rotation/angle
-		bodyPair.second->rot = bodyPair.first->getPhysBody()->GetAngle();
+			// Also apply the rotation/angle
+			bodyPair.second->rot = bodyPair.first->getPhysBody()->GetAngle();
+
+			// The transform component is now ditry
+			bodyPair.second->dirty = true;
+		}
 	}
 }
 
