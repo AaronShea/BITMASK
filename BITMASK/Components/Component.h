@@ -1,4 +1,5 @@
 #pragma once
+#include <bitset>
 #include "SFML/System.hpp"
 #include "ComponentIndex.h"
 

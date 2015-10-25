@@ -17,5 +17,6 @@ namespace bit
 			void removed() override;
 
 			sf::Drawable& getDrawData() override;
+			sf::Shape& getShape();
 	};
 }

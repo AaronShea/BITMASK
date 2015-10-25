@@ -1,24 +1,20 @@
 #pragma once
-#include "Box2D/Box2D.h"
 #include "System.h"
-
-#define RATIO 30.f
 
 namespace bit
 {
 
-	class PhysicsBodyComponent;
 	class TransformComponent;
+	class ShapeComponent;
 
-	class PhysicsSystem : public System
+	class BallMovementSystem : public System
 	{
 		private:
-			std::vector<std::pair<PhysicsBodyComponent*, TransformComponent*>> bodyComps;
-			b2World* physicsWorld;
+			std::vector<std::pair<ShapeComponent*, TransformComponent*>> ballPairs;
 
 		public:
-			PhysicsSystem(SystemManager* manager, float gravityX = 0.f, float gravityY = -9.8f);
-			~PhysicsSystem();
+			BallMovementSystem(SystemManager* manager);
+			~BallMovementSystem();
 
 			void added() override;
 			void removed() override;

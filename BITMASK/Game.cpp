@@ -2,6 +2,7 @@
 #include "Managers/SystemManager.h"
 #include "Systems/InputSystem.h"
 #include "Systems/PhysicsSystem.h"
+#include"Systems/BallMovementSystem.h"
 #include "Resources/ResourceManager.h"
 
 bit::Game::Game()
@@ -10,30 +11,34 @@ bit::Game::Game()
 	// Limit the framerate of the window to 200
 	mWindow.setFramerateLimit(200);
 
-	sysm = new SystemManager();
-
+	// Make a test game object
 	GameObject* testCircle = new GameObject();
 
-	// Add input system
-	sysm->subscribeToEvents(sysm->addSystem<InputSystem>());
+	// Make a few test systems
+	sysm = new SystemManager();
 	System* physSystem = sysm->addSystem<PhysicsSystem>();
-
-	// Make a really simple test shape
-	sf::Shape* testShape = new sf::CircleShape(40.f);
-	testShape->setFillColor(sf::Color::Cyan);
-	testShape->setPosition(100.f, 100.f);
+	System* ballMovement = sysm->addSystem<BallMovementSystem>();
+	System* inputSys = sysm->addSystem<InputSystem>();
 
 	// Make a test render system
 	renderSys = new RenderSystem(sysm, &mWindow);
 
+	// Input needs to listen to window events
+	sysm->subscribeToEvents(inputSys);
+
+	// Make a really simple test shape
+	sf::Shape* testShape = new sf::CircleShape(40.f);
+	testShape->setFillColor(sf::Color::Cyan);
+
 	// Add some components to the circle
 	testCircle->addComponent<ShapeComponent>(testShape);
-	testCircle->addComponent<TransformComponent>(0.f, 0.f, 0.f);
+	testCircle->addComponent<TransformComponent>(100.f, 100.f, 0.f);
 	testCircle->addComponent<PhysicsBodyComponent>(b2BodyType::b2_dynamicBody);
 
 	// Add the test object to the systems that may care about it
 	renderSys->addObj(testCircle);
 	physSystem->addObj(testCircle);
+	ballMovement->addObj(testCircle);
 
 }
 

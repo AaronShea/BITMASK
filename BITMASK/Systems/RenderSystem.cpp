@@ -28,7 +28,7 @@ void bit::RenderSystem::processEvent(sf::Event& eEvent) { }
 void bit::RenderSystem::addObj(GameObject* obj)
 {
 	// Ensure we have the required components
-	if (!obj->componentBitset.test(ComponentIndex::DRAWABLE_COMPONENT))
+	if (!obj->componentBitset.test(ComponentIndex::DRAWABLE_COMPONENT) && !obj->componentBitset.test(ComponentIndex::SHAPE_COMPONENT))
 	{
 		// We don't care about this object
 		return;
