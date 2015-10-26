@@ -49,8 +49,6 @@ void bit::PhysicsSystem::update(sf::Time deltaTime)
 
 			// The transform component is now ditry
 			bodyPair.second->dirty = true;
-
-			sf::err() << "x=" << bodyPair.second->pos.x << " y=" << bodyPair.second->pos.y << " r=" << bodyPair.second->rot << std::endl;
 		}
 	}
 }

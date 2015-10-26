@@ -2,7 +2,7 @@
 #include "Box2D/Box2D.h"
 #include "System.h"
 
-#define RATIO 30.f
+#define RATIO 1.f
 
 namespace bit
 {
@@ -17,7 +17,7 @@ namespace bit
 			b2World* physicsWorld;
 
 		public:
-			PhysicsSystem(SystemManager* manager, float gravityX = 0.f, float gravityY = -9.8f);
+			PhysicsSystem(SystemManager* manager, float gravityX = 0.f, float gravityY = 9.8f);
 			~PhysicsSystem();
 
 			void added() override;
