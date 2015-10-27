@@ -2,7 +2,7 @@
 #include "Box2D/Box2D.h"
 #include "System.h"
 
-#define RATIO 1.f
+#define RATIO 2.f
 
 namespace bit
 {
