@@ -16,38 +16,51 @@ bit::RenderSystem::~RenderSystem()
 
 void bit::RenderSystem::update(sf::Time deltaTime)
 {
+	// Clear the draw target
 	target->clear();
-	for (auto& drawable : comps)
+
+	// used to keep drawables
+	std::vector<DrawableComponent*> drawables;
+
+	// Grab all the drawable components
+	for (auto& obj : objects)
 	{
-		this->target->draw(drawable->getDrawData());
+		obj->getComponents<DrawableComponent>(drawables);
+	}
+
+	// Now draw all the drawable data
+	for (auto& dr : drawables)
+	{
+		target->draw(dr->getDrawData());
 	}
 }
 
 void bit::RenderSystem::processEvent(sf::Event& eEvent) { }
 
-void bit::RenderSystem::addObj(GameObject* obj)
+void bit::RenderSystem::addObj(GameObject* objToAdd)
 {
 	// Ensure we have the required components
-	if (!obj->componentBitset.test(ComponentIndex::DRAWABLE_COMPONENT) && !obj->componentBitset.test(ComponentIndex::SHAPE_COMPONENT))
+	if (!objToAdd->componentBitset.test(ComponentIndex::RENDERABLE_COMPONENT))
 	{
 		// We don't care about this object
 		return;
 	}
 
-	obj->getComponents<DrawableComponent>(comps);
+	// Add the object to the vector
+	objects.push_back(objToAdd);
 };
 
 void bit::RenderSystem::removeObj(const GameObject* obj)
 {
 	// TODO - Need to remove components, not the the actual object!
 	// Remove an object from being updated in this system
-	// auto t = find_if(objects.begin(), objects.end(), [obj](GameObject*& element){ return element == obj; });
+	auto t = find_if(objects.begin(), objects.end(), [obj](GameObject*& element){ return element == obj; });
 
-	// // If we actually found a result
-	// if (!(t == objects.end()))
-	// {
-	// 	objects.erase(t);
-	// }
+	// If we actually found a result
+	if (!(t == objects.end()))
+	{
+	 	objects.erase(t);
+	}
 }
 
 void bit::RenderSystem::added()

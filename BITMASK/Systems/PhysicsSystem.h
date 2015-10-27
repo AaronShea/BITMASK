@@ -13,7 +13,6 @@ namespace bit
 	class PhysicsSystem : public System
 	{
 		private:
-			std::vector<std::pair<PhysicsBodyComponent*, TransformComponent*>> bodyComps;
 			b2World* physicsWorld;
 
 		public:

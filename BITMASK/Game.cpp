@@ -32,6 +32,7 @@ bit::Game::Game()
 
 	// Add some components to the circle
 	testCircle->addComponent<ShapeComponent>(testShape);
+	testCircle->addComponent<RenderableComponent>();
 	testCircle->addComponent<TransformComponent>(100.f, 100.f, 0.f);
 	testCircle->addComponent<PhysicsBodyComponent>(b2BodyType::b2_dynamicBody);
 
@@ -39,7 +40,6 @@ bit::Game::Game()
 	renderSys->addObj(testCircle);
 	physSystem->addObj(testCircle);
 	ballMovement->addObj(testCircle);
-
 }
 
 void bit::Game::run()

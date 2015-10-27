@@ -11,6 +11,7 @@ namespace bit
 	{
 		protected:
 			SystemManager* manager;
+			std::vector<GameObject*> objects;
 
 		public:
 			System(SystemManager* manager)

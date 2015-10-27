@@ -1,8 +1,7 @@
 #include "ShapeComponent.h"
 
 bit::ShapeComponent::ShapeComponent(sf::Shape* constrShape)
-	: DrawableComponent(),
-	Component()
+	: DrawableComponent()
 {
 	// Set constructor shape data
 	this->shapeData = constrShape;

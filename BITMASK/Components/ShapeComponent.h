@@ -1,10 +1,10 @@
 #pragma once
 #include "DrawableComponent.h"
-#include "Component.h"
+#include "DrawableComponent.h"
 
 namespace bit
 {
-	class ShapeComponent : public DrawableComponent, public Component
+	class ShapeComponent : public DrawableComponent
 	{
 		private:
 			sf::Shape* shapeData;

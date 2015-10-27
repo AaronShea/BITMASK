@@ -8,7 +8,6 @@ namespace bit
 	class RenderSystem : public System
 	{
 		private:
-			std::vector<DrawableComponent*> comps;
 			sf::RenderTarget* target;
 
 		public:

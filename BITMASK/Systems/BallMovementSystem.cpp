@@ -16,10 +16,10 @@ bit::BallMovementSystem::~BallMovementSystem()
 
 void bit::BallMovementSystem::update(sf::Time deltaTime)
 {
-	for (auto& pair : ballPairs)
+	for (auto& obj : objects)
 	{
-		pair.first->getShape().setPosition(pair.second->pos);
-		pair.first->getShape().setRotation(pair.second->rot);
+		obj->getSingleComponent<ShapeComponent>()->getShape().setPosition(obj->getSingleComponent<TransformComponent>()->pos);
+		obj->getSingleComponent<ShapeComponent>()->getShape().setRotation(obj->getSingleComponent<TransformComponent>()->rot);
 	}
 }
 
@@ -44,12 +44,7 @@ void bit::BallMovementSystem::addObj(GameObject* objToAdd)
 		return;
 	}
 
-	// Grab the phys and transform component pointers
-	ShapeComponent* shapeComp = objToAdd->getSingleComponent<ShapeComponent>();
-	TransformComponent* transformComp = objToAdd->getSingleComponent<TransformComponent>();
-
-	auto newPair = std::pair<ShapeComponent*, TransformComponent*>(shapeComp, transformComp);
-	ballPairs.push_back(newPair);
+	objects.push_back(objToAdd);
 }
 
 void bit::BallMovementSystem::removeObj(const GameObject* obj)

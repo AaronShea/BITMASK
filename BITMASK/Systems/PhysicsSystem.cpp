@@ -19,15 +19,16 @@ bit::PhysicsSystem::~PhysicsSystem()
 
 void bit::PhysicsSystem::update(sf::Time deltaTime)
 {
-	for (auto& bodyPair : bodyComps)
+	for (auto& obj : objects)
 	{
 		// Check each pair to make sure we have up to date locations of the bodies
-		if (bodyPair.second->dirty)
+		if (obj->getSingleComponent<TransformComponent>()->dirty)
 		{
 			// If the transform component is already dirty, we need to update the physics body
-			bodyPair.first->getPhysBody()->SetTransform(
-				b2Vec2(bodyPair.second->pos.x / RATIO, bodyPair.second->pos.y / RATIO),
-				bodyPair.second->rot
+			obj->getSingleComponent<PhysicsBodyComponent>()->getPhysBody()->SetTransform(
+				b2Vec2(obj->getSingleComponent<TransformComponent>()->pos.x / RATIO, 
+				obj->getSingleComponent<TransformComponent>()->pos.y / RATIO),
+				obj->getSingleComponent<TransformComponent>()->rot
 			);
 		}
 	}
@@ -36,19 +37,19 @@ void bit::PhysicsSystem::update(sf::Time deltaTime)
 	physicsWorld->Step(static_cast<float32>(deltaTime.asMilliseconds()), 6, 2);
 
 	// Update all pairs of components
-	for (auto& bodyPair : bodyComps)
+	for (auto& obj : objects)
 	{
-		if (bodyPair.first->getPhysBody()->IsAwake())
+		if (obj->getSingleComponent<PhysicsBodyComponent>()->getPhysBody()->IsAwake())
 		{
 			// Apply the position of the PhysicsBody to the transform component
-			bodyPair.second->pos.x = bodyPair.first->getPhysBody()->GetPosition().x * RATIO;
-			bodyPair.second->pos.y = bodyPair.first->getPhysBody()->GetPosition().y * RATIO;
+			obj->getSingleComponent<TransformComponent>()->pos.x = obj->getSingleComponent<PhysicsBodyComponent>()->getPhysBody()->GetPosition().x * RATIO;
+			obj->getSingleComponent<TransformComponent>()->pos.y = obj->getSingleComponent<PhysicsBodyComponent>()->getPhysBody()->GetPosition().y * RATIO;
 
 			// Also apply the rotation/angle
-			bodyPair.second->rot = bodyPair.first->getPhysBody()->GetAngle();
+			obj->getSingleComponent<TransformComponent>()->rot = obj->getSingleComponent<PhysicsBodyComponent>()->getPhysBody()->GetAngle();
 
 			// The transform component is now ditry
-			bodyPair.second->dirty = true;
+			obj->getSingleComponent<TransformComponent>()->dirty = true;
 		}
 	}
 }
@@ -76,17 +77,15 @@ void bit::PhysicsSystem::addObj(GameObject* objToAdd)
 
 	// Grab the phys and transform component pointers
 	PhysicsBodyComponent* physComp = objToAdd->getSingleComponent<PhysicsBodyComponent>();
-	TransformComponent* transformComp = objToAdd->getSingleComponent<TransformComponent>();
-
-	// TODO - Add them to an std::pair
-	auto newPair = std::pair<PhysicsBodyComponent*, TransformComponent*>(physComp, transformComp);
-	bodyComps.push_back(newPair);
 
 	// Create a new body based on the def
 	b2Body* body = physicsWorld->CreateBody(physComp->getPhysBodyDef());
 
 	// Now set the component physBody pointer to the actual physBody
 	physComp->setPhysBody(body);
+
+	// Add object to the vector
+	objects.push_back(objToAdd);
 }
 
 void bit::PhysicsSystem::removeObj(const GameObject* obj)
