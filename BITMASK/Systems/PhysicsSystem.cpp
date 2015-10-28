@@ -19,23 +19,6 @@ bit::PhysicsSystem::~PhysicsSystem()
 
 void bit::PhysicsSystem::update(sf::Time deltaTime)
 {
-	//for (auto& obj : objects)
-	//{
-	//	TransformComponent* trans = obj->getSingleComponent<TransformComponent>();
-	//	PhysicsBodyComponent* physBod = obj->getSingleComponent<PhysicsBodyComponent>();
-	//
-	//	// Check each pair to make sure we have up to date locations of the bodies
-	//	if (obj->getSingleComponent<TransformComponent>()->dirty)
-	//	{
-	//		// If the transform component is already dirty, we need to update the physics body
-	//		obj->getSingleComponent<PhysicsBodyComponent>()->getPhysBody()->SetTransform(
-	//			b2Vec2(trans->pos.x / RATIO,
-	//			trans->pos.y / RATIO),
-	//			trans->rot
-	//		);
-	//	}
-	//}
-
 	// Step the physics world (simulation)
 	physicsWorld->Step(static_cast<float32>(deltaTime.asMilliseconds()), 6, 2);
 
@@ -96,4 +79,9 @@ void bit::PhysicsSystem::addObj(GameObject* objToAdd)
 
 void bit::PhysicsSystem::removeObj(const GameObject* obj)
 {
+}
+
+b2World* bit::PhysicsSystem::getPhysWorld()
+{
+	return physicsWorld;
 }

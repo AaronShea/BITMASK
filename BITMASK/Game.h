@@ -13,6 +13,7 @@
 namespace bit
 {
 	class SystemManager;
+	class DebugDrawSystem;
 
 	class Game
 	{
@@ -25,12 +26,13 @@ namespace bit
 			void render();
 			void update(sf::Time deltaTime);
 
-			// Fixed max framerate is set here
-			sf::Time timePerFrame = sf::seconds(1.f / 120.f);
+			// Fixed timestep is set here
+			sf::Time timePerFrame = sf::seconds(1.f / 199.f);
 
 			sf::RenderWindow mWindow;
 
 			SystemManager* sysm;
 			RenderSystem* renderSys;
+			DebugDrawSystem* debugSys;
 	};
 }

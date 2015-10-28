@@ -16,9 +16,6 @@ bit::RenderSystem::~RenderSystem()
 
 void bit::RenderSystem::update(sf::Time deltaTime)
 {
-	// Clear the draw target
-	target->clear();
-
 	// used to keep drawables
 	std::vector<DrawableComponent*> drawables;
 

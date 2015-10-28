@@ -15,8 +15,6 @@
 
 #include "BoxDebugrender.h"
 
-float DebugDraw::RATIO = 30.f;
-
 DebugDraw::DebugDraw(sf::RenderWindow &window)
 {
 	this->window = &window;
@@ -30,7 +28,7 @@ DebugDraw::~DebugDraw()
 //convert a Box2D (float 0.0f - 1.0f range) color to a SFML color (uint8 0 - 255 range)
 sf::Color DebugDraw::B2SFColor(const b2Color &color, int alpha = 255)
 {
-	sf::Color result((sf::Uint8)(color.r*255), (sf::Uint8)(color.g*255), (sf::Uint8)(color.b*255), (sf::Uint8) alpha);
+	sf::Color result((sf::Uint8)(color.r), (sf::Uint8)(color.g), (sf::Uint8)(color.b), (sf::Uint8) alpha);
 	return result;
 }
 
@@ -51,7 +49,7 @@ void DebugDraw::DrawAABB(b2AABB* aabb, const b2Color& color)
 
 void DebugDraw::DrawTransform(const b2Transform& xf)
 {
-	float lineProportion = 0.4f;
+	float lineProportion = 10.f;
 	b2Vec2 p1 = xf.p, p2;
 
 	//red (X axis)

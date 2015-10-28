@@ -11,7 +11,7 @@ namespace bit
 			b2Body* physBody;
 
 		public:
-			PhysicsBodyComponent(b2BodyType bodyType);
+			PhysicsBodyComponent(b2BodyType bodyType, float x, float y, float rot);
 			~PhysicsBodyComponent() override;
 
 			void added() override;

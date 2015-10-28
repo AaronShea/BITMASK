@@ -1,6 +1,6 @@
 #include "PhysicsBodyComponent.h"
 
-bit::PhysicsBodyComponent::PhysicsBodyComponent(b2BodyType bodyType)
+bit::PhysicsBodyComponent::PhysicsBodyComponent(b2BodyType bodyType, float x, float y, float rot)
 	: Component()
 {
 	// Set component type
@@ -8,6 +8,9 @@ bit::PhysicsBodyComponent::PhysicsBodyComponent(b2BodyType bodyType)
 
 	// Setup the body def
 	physBodyDef.type = bodyType;
+	physBodyDef.position.x = x;
+	physBodyDef.position.y = y;
+	physBodyDef.angle = rot;
 }
 
 b2BodyDef* bit::PhysicsBodyComponent::getPhysBodyDef()

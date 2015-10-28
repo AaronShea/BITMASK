@@ -2,22 +2,23 @@
 #include "Box2D/Box2D.h"
 #include "System.h"
 
-#define RATIO 1.f
+class DebugDraw;
 
 namespace bit
 {
+	class PhysicsSystem;	
 
-	class PhysicsBodyComponent;
-	class TransformComponent;
-
-	class PhysicsSystem : public System
+	class DebugDrawSystem : public System
 	{
 		private:
-			b2World* physicsWorld;
+			b2World* physWorld;
+			DebugDraw* dbgDrawer;
+			bool enabled = false;
+			
 
 		public:
-			PhysicsSystem(SystemManager* manager, float gravityX = 0.f, float gravityY = 9.8f);
-			~PhysicsSystem();
+			DebugDrawSystem(SystemManager* manager, PhysicsSystem* physSystem, sf::RenderWindow* drawTarget, bool enabledByDefault = false);
+			~DebugDrawSystem();
 
 			void added() override;
 			void removed() override;
@@ -27,7 +28,5 @@ namespace bit
 
 			void update(sf::Time deltaTime) override;
 			void processEvent(sf::Event& eEvent) override;
-
-			b2World* getPhysWorld();
 	};
 }

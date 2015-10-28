@@ -2,13 +2,14 @@
 #include "Managers/SystemManager.h"
 #include "Systems/InputSystem.h"
 #include "Systems/PhysicsSystem.h"
-#include"Systems/BallMovementSystem.h"
+#include "Systems/BallMovementSystem.h"
+#include "Systems/DebugDrawSystem.h"
 #include "Resources/ResourceManager.h"
 
 bit::Game::Game()
 	: mWindow(sf::VideoMode(1280, 720), "SFML Application")
 {
-	// Limit the framerate of the window to 200
+	// Limit the framerate of the window to 200fps
 	mWindow.setFramerateLimit(200);
 
 	// Make a test game object
@@ -16,12 +17,13 @@ bit::Game::Game()
 
 	// Make a few test systems
 	sysm = new SystemManager();
-	System* physSystem = sysm->addSystem<PhysicsSystem>();
-	System* ballMovement = sysm->addSystem<BallMovementSystem>();
-	System* inputSys = sysm->addSystem<InputSystem>();
+	PhysicsSystem* physSystem = sysm->addSystem<PhysicsSystem>();
+	BallMovementSystem* ballMovement = sysm->addSystem<BallMovementSystem>();
+	InputSystem* inputSys = sysm->addSystem<InputSystem>();
 
-	// Make a test render system
+	// Make a test render system (and a debug draw system)
 	renderSys = new RenderSystem(sysm, &mWindow);
+	debugSys = new DebugDrawSystem(sysm, physSystem, &mWindow, true);
 
 	// Input needs to listen to window events
 	sysm->subscribeToEvents(inputSys);
@@ -34,7 +36,7 @@ bit::Game::Game()
 	testCircle->addComponent<ShapeComponent>(testShape);
 	testCircle->addComponent<RenderableComponent>();
 	testCircle->addComponent<TransformComponent>(100.f, 100.f, 0.f);
-	testCircle->addComponent<PhysicsBodyComponent>(b2BodyType::b2_dynamicBody);
+	testCircle->addComponent<PhysicsBodyComponent>(b2BodyType::b2_dynamicBody, 100.f, 100.f, 0.f);
 
 	// Add the test object to the systems that may care about it
 	renderSys->addObj(testCircle);
@@ -46,6 +48,9 @@ void bit::Game::run()
 {
 	sf::Clock clock;
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
+
+	// Initial tick
+	update(timeSinceLastUpdate);
 
 	while (mWindow.isOpen())
 	{
@@ -81,8 +86,14 @@ void bit::Game::update(sf::Time deltaTime)
 
 void bit::Game::render()
 {
-	// Update the render system
+	// Clear the window
+	mWindow.clear();
+	
+	// Update the debug draw as well
 	renderSys->update(sf::Time().Zero);
+
+	// Update the render system
+	debugSys->update(sf::Time().Zero);
 
 	mWindow.display();
 }

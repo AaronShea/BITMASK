@@ -23,6 +23,7 @@ void bit::BallMovementSystem::update(sf::Time deltaTime)
 
 		shape->getShape().setPosition(trans->pos);
 		shape->getShape().setRotation(trans->rot);
+		sf::err() << "Updated position to " << shape->getShape().getPosition().x << ":" << shape->getShape().getPosition().y << std::endl;
 	}
 }
 

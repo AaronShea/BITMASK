@@ -18,6 +18,7 @@
 #include <iostream>
 #include "SFML/System.hpp"
 #include "SFML/Graphics.hpp"
+#include "Systems/PhysicsSystem.h"
 
 class DebugDraw : public b2Draw
 {
@@ -39,7 +40,6 @@ class DebugDraw : public b2Draw
 
 	private:
 		sf::RenderWindow *window;
-		static float RATIO;
 };
 
 #endif // DEBUGDRAW_H

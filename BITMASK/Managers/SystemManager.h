@@ -20,14 +20,18 @@ namespace bit
 			* Creates a new System and adds it to the update loop
 			*/
 			template<typename SystemType, typename ... Args>
-			System* addSystem(Args ... args)
+			SystemType* addSystem(Args ... args)
 			{
+				// Make a new owner pointer and add it to the vector
 				systems.push_back(std::make_unique<SystemType>(this, args ...));
-				auto added = systems.back().get();
+
+				// Get a ref to the added system
+				auto added = dynamic_cast<SystemType*>(systems.back().get());
 
 				// Tell the system it was added
 				added->added();
 
+				// return plain old pointer
 				return added;
 			};
 
