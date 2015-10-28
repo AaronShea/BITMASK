@@ -29,16 +29,6 @@ void bit::PhysicsSystem::update(sf::Time deltaTime)
 		{
 			TransformComponent* trans = obj->getSingleComponent<TransformComponent>();
 			PhysicsBodyComponent* physBod = obj->getSingleComponent<PhysicsBodyComponent>();
-
-			// Apply the position of the PhysicsBody to the transform component
-			trans->pos.x = physBod->getPhysBody()->GetPosition().x * RATIO;
-			trans->pos.y = physBod->getPhysBody()->GetPosition().y * RATIO;
-
-			// Also apply the rotation/angle
-			trans->rot = physBod->getPhysBody()->GetAngle();
-
-			// The transform component is now ditry
-			trans->dirty = true;
 		}
 	}
 }

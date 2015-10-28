@@ -1,7 +1,7 @@
 #include "BallMovementSystem.h"
 #include "GameObjects/GameObject.h"
 #include "Components/ShapeComponent.h"
-#include "Components/TransformComponent.h"
+#include "Components/PhysicsBodyComponent.h"
 
 bit::BallMovementSystem::BallMovementSystem(SystemManager* manager)
 	: System(manager)
@@ -19,11 +19,10 @@ void bit::BallMovementSystem::update(sf::Time deltaTime)
 	for (auto& obj : objects)
 	{
 		ShapeComponent* shape = obj->getSingleComponent<ShapeComponent>();
-		TransformComponent* trans = obj->getSingleComponent<TransformComponent>();
+		PhysicsBodyComponent* physBody = obj->getSingleComponent<PhysicsBodyComponent>();
 
-		shape->getShape().setPosition(trans->pos);
-		shape->getShape().setRotation(trans->rot);
-		sf::err() << "Updated position to " << shape->getShape().getPosition().x << ":" << shape->getShape().getPosition().y << std::endl;
+		shape->getShape().setPosition(physBody->getPhysBody()->GetPosition().x, physBody->getPhysBody()->GetPosition().y);
+		shape->getShape().setRotation(physBody->getPhysBody()->GetAngle());
 	}
 }
 

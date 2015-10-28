@@ -35,7 +35,6 @@ bit::Game::Game()
 	// Add some components to the circle
 	testCircle->addComponent<ShapeComponent>(testShape);
 	testCircle->addComponent<RenderableComponent>();
-	testCircle->addComponent<TransformComponent>(100.f, 100.f, 0.f);
 	testCircle->addComponent<PhysicsBodyComponent>(b2BodyType::b2_dynamicBody, 100.f, 100.f, 0.f);
 
 	// Add the test object to the systems that may care about it
