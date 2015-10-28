@@ -18,9 +18,9 @@ namespace bit
 			void removed() override;
 
 			b2BodyDef* getPhysBodyDef();
-			b2Body* getPhysBody();
+			b2Body* getPhysBody() const;
 
 			void setPhysBody(b2Body* newBody);
-			b2Fixture* addFixtureToBody(b2FixtureDef* fixDef);
+			b2Fixture* addFixtureToBody(b2FixtureDef* fixDef) const;
 	};
 }

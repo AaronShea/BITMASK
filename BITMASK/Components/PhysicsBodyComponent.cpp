@@ -18,7 +18,7 @@ b2BodyDef* bit::PhysicsBodyComponent::getPhysBodyDef()
 	return &physBodyDef;
 }
 
-b2Body* bit::PhysicsBodyComponent::getPhysBody()
+b2Body* bit::PhysicsBodyComponent::getPhysBody() const
 {
 	return physBody;
 }
@@ -28,7 +28,7 @@ void bit::PhysicsBodyComponent::setPhysBody(b2Body* newBody)
 	this->physBody = newBody;
 }
 
-b2Fixture* bit::PhysicsBodyComponent::addFixtureToBody(b2FixtureDef* fixDef)
+b2Fixture* bit::PhysicsBodyComponent::addFixtureToBody(b2FixtureDef* fixDef) const
 {
 	if (this->physBody == nullptr)
 	{

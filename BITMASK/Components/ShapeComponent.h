@@ -1,6 +1,5 @@
 #pragma once
 #include "DrawableComponent.h"
-#include "DrawableComponent.h"
 
 namespace bit
 {
@@ -10,7 +9,7 @@ namespace bit
 			sf::Shape* shapeData;
 
 		public:
-			ShapeComponent(sf::Shape* constrShape);
+			explicit ShapeComponent(sf::Shape* constrShape);
 			~ShapeComponent() override;
 
 			void added() override;

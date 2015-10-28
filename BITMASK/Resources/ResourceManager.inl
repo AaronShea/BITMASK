@@ -31,7 +31,7 @@ ResourceMemLocation ResourceManager<Resource>::loadIntoMemory(std::string filePa
 	ResourceMemLocation memLoc = { new unsigned char[size], static_cast<size_t>(PHYSFS_fileLength(f)) };
 
 	// Load that file into the buffer
-	PHYSFS_sint64 length_read = PHYSFS_read(f, memLoc.data, 1, static_cast<PHYSFS_uint32>(PHYSFS_fileLength(f)));
+	PHYSFS_read(f, memLoc.data, 1, static_cast<PHYSFS_uint32>(PHYSFS_fileLength(f)));
 
 	return memLoc;
 };

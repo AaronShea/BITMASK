@@ -10,8 +10,8 @@ namespace bit
 			virtual ~DrawableComponent() {};
 			virtual sf::Drawable& getDrawData() = 0;
 
-			virtual void added() = 0;
-			virtual void removed() = 0;
+			virtual void added() override = 0;
+			virtual void removed() override = 0;
 	};
 
 	// Just a mark or "flag" component. No data, just to let the render system know we can render stuff in this object
@@ -24,7 +24,7 @@ namespace bit
 				this->componentType = RENDERABLE_COMPONENT;
 			};
 
-			void added() {};
-			void removed() {};
+			void added() override {};
+			void removed() override {};
 	};
 }

@@ -13,7 +13,7 @@ namespace bit
 			std::vector<std::pair<ShapeComponent*, TransformComponent*>> ballPairs;
 
 		public:
-			BallMovementSystem(SystemManager* manager);
+			explicit BallMovementSystem(SystemManager* manager);
 			~BallMovementSystem();
 
 			void added() override;
