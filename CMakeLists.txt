@@ -103,11 +103,6 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
 find_package(OpenGL REQUIRED)
 target_link_libraries(BITMASK ${OPENGL_LIBRARIES})
 
-# We also need Lua
-find_package(Lua53 REQUIRED)
-target_link_libraries(BITMASK ${LUA53_LIBRARIES})
-include_directories(${LUA53_INCLUDE_DIR})
-
 # Box2D
 find_package(BOX2D REQUIRED)
 include_directories(${BOX2D_INCLUDE_DIRS})
