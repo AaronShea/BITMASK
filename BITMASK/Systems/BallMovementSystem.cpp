@@ -18,8 +18,8 @@ void bit::BallMovementSystem::update(sf::Time deltaTime)
 {
 	for (auto& obj : objects)
 	{
-		ShapeComponent* shape = obj->getSingleComponent<ShapeComponent>();
-		PhysicsBodyComponent* physBody = obj->getSingleComponent<PhysicsBodyComponent>();
+		auto shape = obj->getSingleComponent<ShapeComponent>();
+		auto physBody = obj->getSingleComponent<PhysicsBodyComponent>();
 
 		shape->getShape().setPosition(physBody->getPhysBody()->GetPosition().x, physBody->getPhysBody()->GetPosition().y);
 		shape->getShape().setRotation(physBody->getPhysBody()->GetAngle());

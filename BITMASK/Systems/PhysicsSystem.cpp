@@ -25,10 +25,11 @@ void bit::PhysicsSystem::update(sf::Time deltaTime)
 	// Update all pairs of components
 	for (auto& obj : objects)
 	{
-		if (obj->getSingleComponent<PhysicsBodyComponent>()->getPhysBody()->IsAwake())
+		auto physComp = obj->getSingleComponent<PhysicsBodyComponent>();
+		if (physComp->getPhysBody()->IsAwake())
 		{
-			TransformComponent* trans = obj->getSingleComponent<TransformComponent>();
-			PhysicsBodyComponent* physBod = obj->getSingleComponent<PhysicsBodyComponent>();
+			// If the body is awake it's also dirty
+			physComp->dirty = true;
 		}
 	}
 }
