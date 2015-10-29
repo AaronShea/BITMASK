@@ -47,6 +47,17 @@ void DebugDraw::DrawAABB(b2AABB* aabb, const b2Color& color)
 	this->window->draw(polygon);
 }
 
+void DebugDraw::DrawPoint(const b2Vec2& p, float32 size, const b2Color& color)
+{
+	sf::CircleShape circle(size*RATIO);
+	circle.setPosition(p.x*RATIO - size*RATIO, p.y*RATIO - size*RATIO);
+	circle.setFillColor(this->B2SFColor(color, 50));
+	circle.setOutlineColor(this->B2SFColor(color));
+	circle.setOutlineThickness(1.f);
+
+	this->window->draw(circle);
+}
+
 void DebugDraw::DrawTransform(const b2Transform& xf)
 {
 	float lineProportion = 10.f;

@@ -36,7 +36,6 @@ class DebugDraw : public b2Draw
 		void DrawString(int x, int y, const char* string);
 		void DrawAABB(b2AABB* aabb, const b2Color& color);
 		sf::Color B2SFColor(const b2Color &color, int alpha);
-		void DrawMouseJoint(b2Vec2& p1, b2Vec2& p2, const b2Color &boxColor, const b2Color &lineColor);
 
 	private:
 		sf::RenderWindow *window;
