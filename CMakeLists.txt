@@ -62,6 +62,8 @@ source_group("Resources" FILES ${BITMASK_RES_SRC})
 set(BITMASK_MGR_SRC
 	"BITMASK/Managers/SystemManager.h"
 	"BITMASK/Managers/SystemManager.cpp"
+	"BITMASK/Managers/GameObjectManager.h"
+	"BITMASK/Managers/GameObjectManager.cpp"
 )
 source_group("Managers" FILES ${BITMASK_MGR_SRC})
 

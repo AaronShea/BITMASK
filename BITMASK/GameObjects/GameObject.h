@@ -18,7 +18,7 @@ namespace bit
 
 		public:
 
-			int objectId = 0;
+			unsigned int objectId = 0;
 			bool enabled = false;
 
 			// Bitset used to keep track of the component types this object has
