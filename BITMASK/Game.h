@@ -1,19 +1,11 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 
-#include "Resources/ResourceManager.h"
-#include "GameObjects/GameObject.h"
-
-#include "Systems/RenderSystem.h"
-
-#include "Components/TransformComponent.h"
-#include "Components/ShapeComponent.h"
-#include "Components/PhysicsBodyComponent.h"
-
 namespace bit
 {
 	class SystemManager;
 	class DebugDrawSystem;
+	class RenderSystem;
 
 	class Game
 	{

@@ -1,10 +1,6 @@
 #include "Game.h"
 #include "Managers/SystemManager.h"
-#include "Systems/InputSystem.h"
-#include "Systems/PhysicsSystem.h"
-#include "Systems/BallMovementSystem.h"
-#include "Systems/DebugDrawSystem.h"
-#include "Resources/ResourceManager.h"
+#include "Systems/RenderSystem.h"
 
 bit::Game::Game()
 	: mWindow(sf::VideoMode(1280, 720), "BITMASK")
@@ -14,17 +10,10 @@ bit::Game::Game()
 
 	// Make a few test systems
 	sysm = new SystemManager();
-
-	// Input needs to listen to window events	
-	InputSystem* inputSys = sysm->addSystem<InputSystem>();
-	sysm->subscribeToEvents(inputSys);
-
-	PhysicsSystem* physSystem = sysm->addSystem<PhysicsSystem>();
-	BallMovementSystem* ballMovement = sysm->addSystem<BallMovementSystem>();
 	
 	// Make a test render system (and a debug draw system)
 	renderSys = new RenderSystem(sysm, &mWindow);
-	debugSys = new DebugDrawSystem(sysm, physSystem, &mWindow, true);
+	//debugSys = new DebugDrawSystem(sysm, physSystem, &mWindow, true);
 }
 
 void bit::Game::run()
@@ -76,7 +65,7 @@ void bit::Game::render()
 	renderSys->update(sf::Time().Zero);
 
 	// Update the render system
-	debugSys->update(sf::Time().Zero);
+	//debugSys->update(sf::Time().Zero);
 
 	mWindow.display();
 }
