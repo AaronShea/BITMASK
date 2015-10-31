@@ -50,15 +50,15 @@ namespace bit
 			* Gets the first component of this type and returns a normal pointer to it
 			*/
 			template<typename CompType>
-			CompType* getSingleComponent()
+			CompType* getSingleComponent(ComponentIndex typeIndex)
 			{
 				for (auto& comp : components)
 				{
 					// Make sure this is the right type of component we are looking for
-					auto testPtr = dynamic_cast<CompType*>(comp.second.get());
-					if (testPtr)
+					if (comp.second.get()->componentType == typeIndex)
 					{
-						return testPtr;
+						// Cast it to the correct type and we're good to go
+						return static_cast<CompType*>(comp.second.get());
 					}
 				}
 

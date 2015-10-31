@@ -25,7 +25,7 @@ void bit::PhysicsSystem::update(sf::Time deltaTime)
 	// Update all pairs of components
 	for (auto& obj : objects)
 	{
-		auto physComp = obj->getSingleComponent<PhysicsBodyComponent>();
+		auto physComp = obj->getSingleComponent<PhysicsBodyComponent>(ComponentIndex::PHYSBODY_COMPONENT);
 		if (physComp->getPhysBody()->IsAwake())
 		{
 			// If the body is awake it's also dirty
@@ -56,10 +56,10 @@ void bit::PhysicsSystem::addObj(GameObject* objToAdd)
 	}
 
 	// Grab the phys and transform component pointers
-	PhysicsBodyComponent* physComp = objToAdd->getSingleComponent<PhysicsBodyComponent>();
+	auto physComp = objToAdd->getSingleComponent<PhysicsBodyComponent>(ComponentIndex::PHYSBODY_COMPONENT);
 
 	// Create a new body based on the def
-	b2Body* body = physicsWorld->CreateBody(physComp->getPhysBodyDef());
+	auto body = physicsWorld->CreateBody(physComp->getPhysBodyDef());
 
 	// Now set the component physBody pointer to the actual physBody
 	physComp->setPhysBody(body);
