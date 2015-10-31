@@ -35,6 +35,8 @@ namespace bit
 				return added;
 			};
 
+			void objAdded(GameObject* adding) const;
+
 			void subscribeToEvents(System* sys);
 			void unsubscribeToEvents(System* sys);
 

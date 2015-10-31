@@ -1,4 +1,5 @@
 #include "GameObjectManager.h"
+#include "SystemManager.h"
 #include "GameObjects/GameObject.h"
 
 bit::GameObjectManager::GameObjectManager(SystemManager* manager)
@@ -21,6 +22,9 @@ bit::GameObject* bit::GameObjectManager::createNewObject()
 
 	// Incr the counter for next id
 	objectCounter++;
+
+	// Tell all the systems about this new object
+	manager->objAdded(objects.end()->get());
 
 	// Grab the newly added object and return a raw ptr
 	return objects.end()->get();

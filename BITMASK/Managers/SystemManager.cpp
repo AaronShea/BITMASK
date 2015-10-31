@@ -27,6 +27,16 @@ void bit::SystemManager::processEvent(sf::Event eEvent)
 	}
 }
 
+void bit::SystemManager::objAdded(GameObject* adding) const
+{
+	// We need to tell all systems about this new object
+	for (auto& sys : systems)
+	{
+		// Tell this system about the new object
+		sys->addObj(adding);
+	}
+}
+
 void bit::SystemManager::subscribeToEvents(System* sys)
 {
 	eventListeners.push_back(sys);
