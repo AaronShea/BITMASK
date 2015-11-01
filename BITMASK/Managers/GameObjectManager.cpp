@@ -18,16 +18,16 @@ bit::GameObject* bit::GameObjectManager::createNewObject()
 	objects.push_back(std::make_unique<GameObject>());
 
 	// Set id
-	objects.end()->get()->objectId = objectCounter;
+	objects.back()->objectId = objectCounter;
 
 	// Incr the counter for next id
 	objectCounter++;
 
 	// Tell all the systems about this new object
-	manager->objAdded(objects.end()->get());
+	manager->objAdded(objects.back().get());
 
 	// Grab the newly added object and return a raw ptr
-	return objects.end()->get();
+	return objects.back().get();
 }
 
 bool bit::GameObjectManager::removeObject(int idToRemove)
