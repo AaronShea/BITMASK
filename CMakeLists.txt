@@ -94,7 +94,7 @@ endif()
 # If UNIX, we need to use c++11 and libc++
 if(UNIX)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -stdlib=libc++ -Wall")
-	target_link_libraries(BITMASK "-lc++abi -v")
+	target_link_libraries(BITMASK "-lc++abi -lpthread -ldl -v")
 endif()
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
