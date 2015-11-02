@@ -1,11 +1,18 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 
+namespace chaiscript
+{
+	class ChaiScript;
+}
+
 namespace bit
 {
 	class SystemManager;
 	class DebugDrawSystem;
 	class RenderSystem;
+	class PhysicsSystem;
+	class GameObjectManager;
 
 	class Game
 	{
@@ -26,5 +33,9 @@ namespace bit
 			SystemManager* sysm;
 			RenderSystem* renderSys;
 			DebugDrawSystem* debugSys;
+			PhysicsSystem* physSys;
+			GameObjectManager* objManager;
+			
+			chaiscript::ChaiScript* chai;
 	};
 }

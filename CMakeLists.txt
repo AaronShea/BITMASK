@@ -99,6 +99,12 @@ endif()
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
 
+# Grab chaiscript as well
+if (NOT CHSCRIPT_INCLUDE)
+	message(FATAL_ERROR "Please set the CHSCRIPT_INCLUDE to the chaiscript include directory")
+endif()
+include_directories(${CHSCRIPT_INCLUDE})
+
 # We require OpenGL
 find_package(OpenGL REQUIRED)
 target_link_libraries(BITMASK ${OPENGL_LIBRARIES})

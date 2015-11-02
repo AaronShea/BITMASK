@@ -1,6 +1,14 @@
 #include "Game.h"
 #include "Managers/SystemManager.h"
 #include "Systems/RenderSystem.h"
+#include "Systems/PhysicsSystem.h"
+#include "Systems/DebugDrawSystem.h"
+#include "Systems/InputSystem.h"
+#include "Managers/GameObjectManager.h"
+#include "chaiscript/chaiscript.hpp"
+#include "chaiscript/chaiscript_stdlib.hpp"
+
+
 
 bit::Game::Game()
 	: mWindow(sf::VideoMode(1280, 720), "BITMASK")
@@ -8,18 +16,25 @@ bit::Game::Game()
 	// Limit the framerate of the window to 200fps
 	mWindow.setFramerateLimit(200);
 
-	// Make a few test systems
+	// Managers
 	sysm = new SystemManager();
-	
+	objManager = new GameObjectManager(sysm);
+
+	// Add physics and input system
+	sysm->subscribeToEvents(sysm->addSystem<InputSystem>());
+	physSys = sysm->addSystem<PhysicsSystem>();
+
 	// Make a test render system (and a debug draw system)
 	renderSys = new RenderSystem(sysm, &mWindow);
-	//debugSys = new DebugDrawSystem(sysm, physSystem, &mWindow, true);
+	debugSys = new DebugDrawSystem(sysm, physSys, &mWindow, true);
+
+	chai = new chaiscript::ChaiScript(chaiscript::Std_Lib::library());
 }
 
 void bit::Game::run()
 {
 	sf::Clock clock;
-	sf::Time timeSinceLastUpdate = sf::Time::Zero;
+	auto timeSinceLastUpdate = sf::Time::Zero;
 
 	// Initial tick
 	update(timeSinceLastUpdate);

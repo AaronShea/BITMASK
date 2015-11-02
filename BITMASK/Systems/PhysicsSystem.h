@@ -16,7 +16,7 @@ namespace bit
 			b2World* physicsWorld;
 
 		public:
-			PhysicsSystem(SystemManager* manager, float gravityX = 0.f, float gravityY = 9.8f);
+			explicit PhysicsSystem(SystemManager* manager, float gravityX = 0.f, float gravityY = 9.8f);
 			~PhysicsSystem();
 
 			void added() override;
