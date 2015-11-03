@@ -67,12 +67,19 @@ set(BITMASK_MGR_SRC
 )
 source_group("Managers" FILES ${BITMASK_MGR_SRC})
 
-# Managers
+# Debugging
 set(BITMASK_DBG_SRC
 	"BITMASK/DrawDebug/BoxDebugrender.h"
 	"BITMASK/DrawDebug/BoxDebugrender.cpp"
 )
 source_group("Debug" FILES ${BITMASK_DBG_SRC})
+
+# Scripting
+set(BITMASK_SCRIPT_SRC
+	"BITMASK/Scripting/ScriptDefs.h"
+	"BITMASK/Scripting/ScriptDefs.cpp"
+)
+source_group("Scripting" FILES ${BITMASK_SCRIPT_SRC})
 
 # Add to the project generation
 add_executable(BITMASK 
@@ -83,6 +90,7 @@ add_executable(BITMASK
 	"${BITMASK_RES_SRC}"
 	"${BITMASK_MGR_SRC}"
 	"${BITMASK_DBG_SRC}"
+	"${BITMASK_SCRIPT_SRC}"
 )
 
 # If on Windows we need "winmm.lib"

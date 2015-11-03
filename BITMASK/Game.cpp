@@ -1,13 +1,16 @@
 #include "Game.h"
+
 #include "Managers/SystemManager.h"
+#include "Managers/GameObjectManager.h"
+
 #include "Systems/RenderSystem.h"
 #include "Systems/PhysicsSystem.h"
 #include "Systems/DebugDrawSystem.h"
 #include "Systems/InputSystem.h"
-#include "Managers/GameObjectManager.h"
+
 #include "chaiscript/chaiscript.hpp"
 #include "chaiscript/chaiscript_stdlib.hpp"
-
+#include "Scripting/ScriptDefs.h"
 
 
 bit::Game::Game()
@@ -28,7 +31,12 @@ bit::Game::Game()
 	renderSys = new RenderSystem(sysm, &mWindow);
 	debugSys = new DebugDrawSystem(sysm, physSys, &mWindow, true);
 
+	// Make a new script engine and register global types
 	chai = new chaiscript::ChaiScript(chaiscript::Std_Lib::library());
+	ScriptDefs::registerTypes(chai);
+	chai->add_global(chaiscript::var(objManager), "gameObjectManager");
+	// chai->eval_file("C:/Users/aaron/Desktop/test.chai");
+	// chai->eval("main()");
 }
 
 void bit::Game::run()
