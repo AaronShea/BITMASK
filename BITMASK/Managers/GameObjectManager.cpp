@@ -30,6 +30,11 @@ bit::GameObject* bit::GameObjectManager::createNewObject()
 	return objects.back().get();
 }
 
+void bit::GameObjectManager::registerObjectWithSystems(GameObject* obj) const
+{
+	manager->objAdded(obj);
+}
+
 bool bit::GameObjectManager::removeObject(int idToRemove)
 {
 	// Find the object with that id

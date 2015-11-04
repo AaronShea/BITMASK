@@ -1,5 +1,7 @@
 #pragma once
 
+struct b2Vec2;
+
 namespace chaiscript
 {
 	class ChaiScript;

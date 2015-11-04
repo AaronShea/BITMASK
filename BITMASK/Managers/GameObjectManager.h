@@ -19,6 +19,7 @@ namespace bit
 			~GameObjectManager();
 
 			GameObject* createNewObject();
+			void registerObjectWithSystems(GameObject* obj) const;
 			bool removeObject(int idToRemove);
 	};
 }

@@ -88,7 +88,7 @@ void bit::Game::render()
 	renderSys->update(sf::Time().Zero);
 
 	// Update the render system
-	//debugSys->update(sf::Time().Zero);
+	debugSys->update(sf::Time().Zero);
 
 	mWindow.display();
 }
