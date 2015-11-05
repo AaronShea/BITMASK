@@ -28,14 +28,13 @@ void bit::PhysicsBodyComponent::setPhysBody(b2Body* newBody)
 	this->physBody = newBody;
 }
 
-b2Fixture* bit::PhysicsBodyComponent::addFixtureToBody(b2FixtureDef* fixDef) const
+b2Fixture* bit::PhysicsBodyComponent::addFixtureToBody(const float32& density, b2Shape* shape) const
 {
 	if (this->physBody == nullptr)
 	{
 		throw std::runtime_error("PhysicsBodyComponent::addFixtureToBody No body to this component yet!");
 	}
-
-	return this->physBody->CreateFixture(fixDef);
+	return this->physBody->CreateFixture(shape, density);
 }
 
 bit::PhysicsBodyComponent::~PhysicsBodyComponent()
