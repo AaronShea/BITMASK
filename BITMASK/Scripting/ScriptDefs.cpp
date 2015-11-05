@@ -38,11 +38,40 @@ void bit::ScriptDefs::registerTypes(chaiscript::ChaiScript* engine)
 	engine->add(chaiscript::fun(&b2Body::SetLinearVelocity), "setLinearVelocity");
 	engine->add(chaiscript::fun(&b2Body::SetGravityScale), "setGravityScale");
 
+	// b2Shape
+	engine->add(chaiscript::user_type<b2Shape>(), "b2Shape");
+	engine->add(chaiscript::base_class<b2Shape, b2CircleShape>());
+	engine->add(chaiscript::base_class<b2Shape, b2PolygonShape>());
+	engine->add(chaiscript::base_class<b2Shape, b2EdgeShape>());
+
+	// b2CircleShape
+	engine->add(chaiscript::user_type<b2CircleShape>(), "b2CircleShape");
+	engine->add(chaiscript::constructor<b2CircleShape()>(), "b2CircleShape");
+	engine->add(chaiscript::fun(&b2CircleShape::m_p), "localPos");
+	engine->add(chaiscript::fun(&b2CircleShape::m_radius), "radius");
+
+	// b2FixtureDef
+	engine->add(chaiscript::user_type<b2FixtureDef>(), "b2FixtureDef");
+	engine->add(chaiscript::constructor<b2FixtureDef()>(), "b2FixtureDef");
+	engine->add(chaiscript::fun(&b2FixtureDef::density), "density");
+	engine->add(chaiscript::fun(&b2FixtureDef::friction), "friction");
+	engine->add(chaiscript::fun(&b2FixtureDef::restitution), "restitution");
+	engine->add(chaiscript::fun(&b2FixtureDef::isSensor), "isSensor");
+	engine->add(chaiscript::var(&b2FixtureDef::shape), "shape");
+
 	// Body Types
 	engine->add_global_const(chaiscript::const_var(b2BodyType::b2_dynamicBody), "b2_dynamicBody");
 	engine->add_global_const(chaiscript::const_var(b2BodyType::b2_staticBody), "b2_staticBody");
 	engine->add_global_const(chaiscript::const_var(b2BodyType::b2_kinematicBody), "b2_kinematicBody");
 	engine->add(chaiscript::user_type<b2BodyType>(), "b2BodyType");
+
+	// Shape Types
+	engine->add_global_const(chaiscript::const_var(b2Shape::Type::e_circle), "e_circle");
+	engine->add_global_const(chaiscript::const_var(b2Shape::Type::e_chain), "e_chain");
+	engine->add_global_const(chaiscript::const_var(b2Shape::Type::e_edge), "e_edge");
+	engine->add_global_const(chaiscript::const_var(b2Shape::Type::e_polygon), "e_polygon");
+	engine->add_global_const(chaiscript::const_var(b2Shape::Type::e_typeCount), "e_typeCount");
+	engine->add(chaiscript::user_type<b2Shape::Type>(), "b2ShapeType");
 
 	// ----------------------------
 	// GameObjects
@@ -85,6 +114,7 @@ void bit::ScriptDefs::registerTypes(chaiscript::ChaiScript* engine)
 	engine->add(chaiscript::base_class<Component, PhysicsBodyComponent>());
 	engine->add(chaiscript::user_type<PhysicsBodyComponent>(), "PhysicsBodyComponent");
 	engine->add(chaiscript::fun(&PhysicsBodyComponent::getPhysBody), "getPhysBody");
+	engine->add(chaiscript::fun(&PhysicsBodyComponent::addFixtureToBody), "addFixture");
 
 	// Shape
 	engine->add(chaiscript::base_class<DrawableComponent, ShapeComponent>());
