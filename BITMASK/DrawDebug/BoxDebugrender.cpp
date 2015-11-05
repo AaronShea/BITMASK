@@ -26,9 +26,9 @@ DebugDraw::~DebugDraw()
 }
 
 //convert a Box2D (float 0.0f - 1.0f range) color to a SFML color (uint8 0 - 255 range)
-sf::Color DebugDraw::B2SFColor(const b2Color &color, int alpha = 255)
+sf::Color DebugDraw::B2SFColor(const b2Color &color, float alpha = 1.f)
 {
-	sf::Color result((sf::Uint8)(color.r), (sf::Uint8)(color.g), (sf::Uint8)(color.b), (sf::Uint8) alpha);
+	sf::Color result((color.r*255), (color.g*255), (color.b*255), alpha*255);
 	return result;
 }
 
@@ -65,11 +65,11 @@ void DebugDraw::DrawTransform(const b2Transform& xf)
 
 	//red (X axis)
 	p2 = p1 + (lineProportion * xf.q.GetXAxis());
-	this->DrawSegment(p1, p2, b2Color(255, 0, 0));
+	this->DrawSegment(p1, p2, b2Color(1, 0, 0));
 
 	//green (Y axis)
 	p2 = p1 + (lineProportion * xf.q.GetYAxis());
-	this->DrawSegment(p1, p2, b2Color(0, 255, 0));
+	this->DrawSegment(p1, p2, b2Color(0, 1, 0));
 }
 
 void DebugDraw::DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color& color)
@@ -87,7 +87,7 @@ void DebugDraw::DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Ve
 	//no converion in cordinates of center and upper left corner, Circle in sfml is managed by default with the center
 	sf::CircleShape circle(radius*RATIO);
 	circle.setPosition(center.x*RATIO - radius*RATIO, center.y*RATIO - radius*RATIO);
-	circle.setFillColor(this->B2SFColor(color, 50));
+	circle.setFillColor(this->B2SFColor(color, 0.5));
 	circle.setOutlineColor(this->B2SFColor(color));
 	circle.setOutlineThickness(1.f);
 
