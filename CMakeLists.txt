@@ -95,6 +95,14 @@ add_executable(BITMASK
 	"${BITMASK_SCRIPT_SRC}"
 )
 
+# Used to pack assets on Windows development platforms
+if(WIN32)
+	add_custom_command(TARGET BITMASK
+		POST_BUILD
+		COMMAND del DATA.BITMASK && X:/PACKERCLI.exe a -r DATA.BITMASK res/* -tzip
+	)
+endif()
+
 # If on Windows we need "winmm.lib"
 if(WIN32)
 	target_link_libraries(BITMASK winmm.lib)
