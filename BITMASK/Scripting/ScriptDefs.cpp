@@ -86,6 +86,9 @@ void bit::ScriptDefs::registerTypes(chaiscript::ChaiScript* engine)
 	engine->add(chaiscript::fun(&GameObject::addComponent<PhysicsBodyComponent, b2BodyType, const float&, const float&, const float&>), "addPhysicsBodyComponent");
 	engine->add(chaiscript::fun(&GameObject::getSingleComponent<PhysicsBodyComponent>), "getPhysicsBodyComponent");
 
+	engine->add(chaiscript::fun(&GameObject::addComponent<ScriptedComponent, const std::string&>), "addScriptComponent");
+	engine->add(chaiscript::fun(&GameObject::getSingleComponent<ScriptedComponent>), "getScriptComponent");
+
 	// ----------------------------
 	// Managers
 	// ----------------------------
@@ -124,5 +127,4 @@ void bit::ScriptDefs::registerTypes(chaiscript::ChaiScript* engine)
 	// Script Component
 	engine->add(chaiscript::base_class<Component, ScriptedComponent>());
 	engine->add(chaiscript::user_type<ScriptedComponent>(), "ScriptedComponent");
-	engine->add(chaiscript::constructor<ScriptedComponent(const std::string&)>(), "ScriptedComponent");
 }

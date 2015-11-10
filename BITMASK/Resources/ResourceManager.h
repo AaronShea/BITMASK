@@ -19,14 +19,14 @@ namespace bit
 	{
 	private:
 		std::map<std::string, std::unique_ptr<Resource>> resource_map;
-		ResourceMemLocation loadIntoMemory(std::string filePath);
+		ResourceMemLocation loadIntoMemory(const std::string& filePath);
 
 	public:
 		template <typename Parameter>
-		void load(std::string id, std::string filePath, const Parameter& secondParam);
+		void load(const std::string& id, const std::string& filePath, const Parameter& secondParam);
 
-		void load(std::string id, std::string filePath);
-		Resource& get(std::string id);
+		void load(const std::string& id, const std::string& filePath);
+		Resource& get(const std::string& id);
 	};
 
 	#include "ResourceManager.inl"

@@ -1,5 +1,5 @@
 template <typename Resource>
-void ResourceManager<Resource>::load(std::string id, std::string filePath)
+void ResourceManager<Resource>::load(const std::string& id, const std::string& filePath)
 {
 	std::unique_ptr<Resource> resource(new Resource());
 
@@ -16,7 +16,7 @@ void ResourceManager<Resource>::load(std::string id, std::string filePath)
 };
 
 template <typename Resource>
-ResourceMemLocation ResourceManager<Resource>::loadIntoMemory(std::string filePath)
+ResourceMemLocation ResourceManager<Resource>::loadIntoMemory(const std::string& filePath)
 {	
 	// Now let's try and load that data
 	PHYSFS_File *f;
@@ -34,12 +34,11 @@ ResourceMemLocation ResourceManager<Resource>::loadIntoMemory(std::string filePa
 	PHYSFS_read(f, memLoc.data, 1, static_cast<PHYSFS_uint32>(PHYSFS_fileLength(f)));
 
 	return memLoc;
-};
-
+}
 
 template <typename Resource>
 template <typename Parameter>
-void ResourceManager<Resource>::load(std::string id, std::string filePath, const Parameter& secondParam)
+void ResourceManager<Resource>::load(const std::string& id, const std::string& filePath, const Parameter& secondParam)
 {
 	std::unique_ptr<Resource> resource(new Resource());
 	if (!resource->loadFromFile(filePath, secondParam))
@@ -52,7 +51,7 @@ void ResourceManager<Resource>::load(std::string id, std::string filePath, const
 }
 
 template <typename Resource>
-Resource& ResourceManager<Resource>::get(std::string id)
+Resource& ResourceManager<Resource>::get(const std::string& id)
 {
 	auto found = resource_map.find(id);
 	assert(found != resource_map.end());

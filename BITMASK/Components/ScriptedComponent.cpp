@@ -7,6 +7,8 @@ bit::ScriptedComponent::ScriptedComponent(const std::string& modulePath)
 {
 	// Set the modulePath
 	this->modulePath = modulePath;
+
+	this->componentType = ComponentIndex::SCRIPT_COMPONENT;
 }
 
 bit::ScriptedComponent::~ScriptedComponent()
