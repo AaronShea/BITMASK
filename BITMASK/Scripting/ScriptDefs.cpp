@@ -15,6 +15,7 @@
 #include "Components/DrawableComponent.h"
 #include "Components/PhysicsBodyComponent.h"
 #include "Components/ShapeComponent.h"
+#include "Components/ScriptedComponent.h"
 
 void bit::ScriptDefs::registerTypes(chaiscript::ChaiScript* engine)
 {
@@ -105,6 +106,7 @@ void bit::ScriptDefs::registerTypes(chaiscript::ChaiScript* engine)
 	engine->add_global_const(chaiscript::const_var(ComponentIndex::RENDERABLE_COMPONENT), "RENDERABLE_COMPONENT");
 	engine->add_global_const(chaiscript::const_var(ComponentIndex::SHAPE_COMPONENT), "SHAPE_COMPONENT");
 	engine->add_global_const(chaiscript::const_var(ComponentIndex::TRANSFORM_COMPONENT), "TRANSFORM_COMPONENT");
+	engine->add_global_const(chaiscript::const_var(ComponentIndex::SCRIPT_COMPONENT), "SCRIPT_COMPONENT"); 
 	engine->add(chaiscript::user_type<ComponentIndex>(), "ComponentIndex");
 	
 	// Drawable
@@ -118,4 +120,9 @@ void bit::ScriptDefs::registerTypes(chaiscript::ChaiScript* engine)
 
 	// Shape
 	engine->add(chaiscript::base_class<DrawableComponent, ShapeComponent>());
+
+	// Script Component
+	engine->add(chaiscript::base_class<Component, ScriptedComponent>());
+	engine->add(chaiscript::user_type<ScriptedComponent>(), "ScriptedComponent");
+	engine->add(chaiscript::constructor<ScriptedComponent(const std::string&)>(), "ScriptedComponent");
 }
