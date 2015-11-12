@@ -57,6 +57,8 @@ source_group("GameObjects" FILES ${BITMASK_OBJ_SRC})
 set(BITMASK_RES_SRC
 	"BITMASK/Resources/ResourceManager.h"
 	"BITMASK/Resources/ResourceManager.inl"
+	"BITMASK/Resources/ScriptManager.h"
+	"BITMASK/Resources/ScriptManager.cpp"
 )
 source_group("Resources" FILES ${BITMASK_RES_SRC})
 
@@ -107,6 +109,7 @@ endif()
 if(WIN32)
 	target_link_libraries(BITMASK winmm.lib)
 	set(SFML_STATIC_LIBRARIES true)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /bigobj")
 endif()
 
 # If UNIX, we need to use c++11 and libc++

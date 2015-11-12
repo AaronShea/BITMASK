@@ -14,6 +14,25 @@ namespace bit
 		size_t dataSize;
 	};
 
+	class PhysFSManager
+	{
+		public:
+			static int mountArchive(const std::string& filePath, const std::string& mountPath)
+			{
+				return PHYSFS_mount(filePath.c_str(), mountPath.c_str(), true);
+			};
+
+			static void initPhysFS()
+			{
+				PHYSFS_init(".");
+			};
+
+			static void deinit()
+			{
+				PHYSFS_deinit();
+			};
+	};
+
 	template<typename Resource>
 	class ResourceManager
 	{

@@ -8,9 +8,12 @@
 #include "Systems/DebugDrawSystem.h"
 #include "Systems/InputSystem.h"
 
+#include "Resources/ResourceManager.h"
+
 #include "chaiscript/chaiscript.hpp"
 #include "chaiscript/chaiscript_stdlib.hpp"
 #include "Scripting/ScriptDefs.h"
+#include "Resources/ScriptManager.h"
 
 
 bit::Game::Game()
@@ -18,6 +21,10 @@ bit::Game::Game()
 {
 	// Limit the framerate of the window to 200fps
 	mWindow.setFramerateLimit(200);
+
+	// PhysFS Stuff
+	bit::PhysFSManager::initPhysFS();
+	bit::PhysFSManager::mountArchive("../DATA.BITMASK", "/");
 
 	// Managers
 	sysm = new SystemManager();
@@ -35,8 +42,8 @@ bit::Game::Game()
 	chai = new chaiscript::ChaiScript(chaiscript::Std_Lib::library());
 	ScriptDefs::registerTypes(chai);
 	chai->add_global(chaiscript::var(objManager), "gameObjectManager");
-	// chai->eval_file("C:/Users/aaron/Desktop/test.chai");
-	// chai->eval("main()");
+	auto bootstrapper = bit::ScriptManager::getScriptContent("/res/scripts/init.bit");
+	chai->eval(bootstrapper);
 }
 
 void bit::Game::run()
