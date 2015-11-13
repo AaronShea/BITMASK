@@ -6,10 +6,6 @@
 
 namespace bit
 {
-
-	class PhysicsBodyComponent;
-	class TransformComponent;
-
 	class PhysicsSystem : public System
 	{
 		private:
