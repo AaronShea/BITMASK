@@ -24,7 +24,7 @@ bit::GameObject* bit::GameObjectManager::createNewObject()
 	objectCounter++;
 
 	// Tell all the systems about this new object
-	manager->objAdded(objects.back().get());
+	// manager->objAdded(objects.back().get());
 
 	// Grab the newly added object and return a raw ptr
 	return objects.back().get();

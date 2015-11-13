@@ -7,6 +7,7 @@
 #include "Systems/PhysicsSystem.h"
 #include "Systems/DebugDrawSystem.h"
 #include "Systems/InputSystem.h"
+#include "Systems/ScriptSystem.h"
 
 #include "Resources/ResourceManager.h"
 
@@ -34,12 +35,15 @@ bit::Game::Game()
 	sysm->subscribeToEvents(sysm->addSystem<InputSystem>());
 	physSys = sysm->addSystem<PhysicsSystem>();
 
+	// Now add script system
+	chai = new chaiscript::ChaiScript(chaiscript::Std_Lib::library());
+	sysm->addSystem<ScriptSystem>(chai);
+
 	// Make a test render system (and a debug draw system)
 	renderSys = new RenderSystem(sysm, &mWindow);
 	debugSys = new DebugDrawSystem(sysm, physSys, &mWindow, true);
 
-	// Make a new script engine and register global types
-	chai = new chaiscript::ChaiScript(chaiscript::Std_Lib::library());
+	// Make a new script engine and register global types	
 	ScriptDefs::registerTypes(chai);
 	chai->add_global(chaiscript::var(objManager), "gameObjectManager");
 	auto bootstrapper = bit::ScriptManager::getScriptContent("/res/scripts/init.bit");
