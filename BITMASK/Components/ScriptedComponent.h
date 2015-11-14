@@ -7,6 +7,7 @@ namespace chaiscript
 {
 	class ChaiScript;
 	class Module;
+	class Boxed_Value;
 }
 
 namespace bit
@@ -15,16 +16,16 @@ namespace bit
 	{
 		private:
 			chaiscript::ChaiScript* scriptEngine;
-			std::shared_ptr<chaiscript::Module> internalModule;
+			chaiscript::Boxed_Value* scriptInstance;
 
 			// Is this ready to be run?
 			bool loaded = false;
 
 			// Path to the source file/resource
-			std::string modulePath;
+			std::string moduleConstructor;
 
 		public:
-			explicit ScriptedComponent(const std::string& modulePath);
+			explicit ScriptedComponent(const std::string& moduleConstructor);
 			~ScriptedComponent() override;
 
 			void added() override;

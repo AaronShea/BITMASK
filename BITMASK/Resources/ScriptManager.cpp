@@ -1,6 +1,6 @@
 #include "ScriptManager.h"
 
-std::string bit::ScriptManager::getScriptContent(std::string path)
+std::string bit::ScriptManager::getScriptContent(const std::string& path)
 {
 	// Try and load the file
 	PHYSFS_File *f;
@@ -21,4 +21,21 @@ std::string bit::ScriptManager::getScriptContent(std::string path)
 	std::string fileContent(buff);
 
 	return fileContent.substr(0, size);
+}
+
+void bit::ScriptManager::loadModules(const std::string& path, chaiscript::ChaiScript* engine)
+{
+	char** list = PHYSFS_enumerateFiles(path.c_str());
+	char** fileName;
+
+	std::string filePathFull = "";
+
+	for (fileName = list; *fileName != NULL; fileName++)
+	{
+		// For each file, grab its content and eval it into the engine
+		filePathFull = path + *fileName;
+		engine->eval(getScriptContent(filePathFull));
+	}
+
+	PHYSFS_freeList(list);
 }
