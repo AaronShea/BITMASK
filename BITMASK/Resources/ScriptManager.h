@@ -1,7 +1,11 @@
 #pragma once
 #include "physfs.h"
-#include "chaiscript/chaiscript.hpp"
 #include <string>
+
+namespace chaiscript
+{
+	class ChaiScript;
+}
 
 namespace bit
 {

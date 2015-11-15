@@ -1,14 +1,8 @@
 #pragma once
 #include "Component.h"
+#include "chaiscript\chaiscript.hpp"
 #include <functional>
 #include <memory>
-
-namespace chaiscript
-{
-	class ChaiScript;
-	class Module;
-	class Boxed_Value;
-}
 
 namespace bit
 {
@@ -16,7 +10,7 @@ namespace bit
 	{
 		private:
 			chaiscript::ChaiScript* scriptEngine;
-			chaiscript::Boxed_Value* scriptInstance;
+			chaiscript::Boxed_Value scriptInstance;
 
 			// Is this ready to be run?
 			bool loaded = false;
@@ -34,7 +28,7 @@ namespace bit
 			// Init the script component
 			void init(chaiscript::ChaiScript* scriptEngine);
 
-			// Load a function from the module 
-			std::function<void()> getScriptFunction(std::string functionName) const;
+			// Load a function from the module
+			void callFunction(std::string functionName) const;
 	};
 }

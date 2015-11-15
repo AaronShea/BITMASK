@@ -8,7 +8,6 @@ bit::ScriptedComponent::ScriptedComponent(const std::string& moduleConstructor)
 {
 	// Set the modulePath
 	this->moduleConstructor = moduleConstructor;
-
 	this->componentType = ComponentIndex::SCRIPT_COMPONENT;
 }
 
@@ -28,15 +27,16 @@ void bit::ScriptedComponent::init(chaiscript::ChaiScript* scriptEngine)
 	assert(this->scriptEngine != nullptr);
 
 	// Call and store an instance of this module class
-	scriptInstance = &scriptEngine->eval(moduleConstructor);
+	auto t = scriptEngine->eval(moduleConstructor);
+	scriptInstance = t;
 }
 
-std::function<void()> bit::ScriptedComponent::getScriptFunction(std::string functionName) const
+void bit::ScriptedComponent::callFunction(std::string functionName) const
 {
 	// Load the requested function from the script context
-	// std::function<void()> f = scriptEngine->eval<std::function<void()>>(functionName);
-
-	// Return it for later calling
-	// TODO
-	return nullptr;
+	auto caller = scriptEngine->eval<std::function<void(chaiscript::Boxed_Value&)>>(functionName);
+	if (caller != nullptr)
+	{
+		caller(static_cast<chaiscript::Boxed_Value>(scriptInstance));
+	}
 }

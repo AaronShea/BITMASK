@@ -1,4 +1,5 @@
 #include "ScriptManager.h"
+#include "chaiscript/chaiscript.hpp"
 
 std::string bit::ScriptManager::getScriptContent(const std::string& path)
 {
