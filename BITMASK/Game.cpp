@@ -46,8 +46,14 @@ bit::Game::Game()
 	// Make a new script engine and register global types	
 	ScriptDefs::registerTypes(chai);
 	chai->add_global(chaiscript::var(objManager), "gameObjectManager");
+
+	// Load main script
 	auto bootstrapper = bit::ScriptManager::getScriptContent("/res/scripts/init.bit");
+
+	// Load all module classes as well
 	bit::ScriptManager::loadModules("/res/scripts/modules/", chai);
+
+	// Execute main script
 	chai->eval(bootstrapper);
 }
 
