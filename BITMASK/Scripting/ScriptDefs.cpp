@@ -45,20 +45,24 @@ void bit::ScriptDefs::registerTypes(chaiscript::ChaiScript* engine)
 	engine->add(chaiscript::base_class<b2Shape, b2PolygonShape>());
 	engine->add(chaiscript::base_class<b2Shape, b2EdgeShape>());
 
+	// b2PolygonShape
+	engine->add(chaiscript::user_type<b2PolygonShape>(), "b2PolygonShape");
+	engine->add(chaiscript::constructor<b2PolygonShape()>(), "b2PolygonShape");
+	engine->add(chaiscript::fun(&b2PolygonShape::Set), "Set");
+	engine->add(chaiscript::fun(static_cast<void (b2PolygonShape::*)(float32, float32)>(&b2PolygonShape::SetAsBox)), "SetAsBox");
+	engine->add(chaiscript::fun(static_cast<void (b2PolygonShape::*)(float32, float32, const b2Vec2&, float32)>(&b2PolygonShape::SetAsBox)), "SetAsBox");
+
 	// b2CircleShape
 	engine->add(chaiscript::user_type<b2CircleShape>(), "b2CircleShape");
 	engine->add(chaiscript::constructor<b2CircleShape()>(), "b2CircleShape");
 	engine->add(chaiscript::fun(&b2CircleShape::m_p), "localPos");
 	engine->add(chaiscript::fun(&b2CircleShape::m_radius), "radius");
 
-	// b2FixtureDef
-	engine->add(chaiscript::user_type<b2FixtureDef>(), "b2FixtureDef");
-	engine->add(chaiscript::constructor<b2FixtureDef()>(), "b2FixtureDef");
-	engine->add(chaiscript::fun(&b2FixtureDef::density), "density");
-	engine->add(chaiscript::fun(&b2FixtureDef::friction), "friction");
-	engine->add(chaiscript::fun(&b2FixtureDef::restitution), "restitution");
-	engine->add(chaiscript::fun(&b2FixtureDef::isSensor), "isSensor");
-	engine->add(chaiscript::var(&b2FixtureDef::shape), "shape");
+	// Fixtures
+	engine->add(chaiscript::fun(&b2Fixture::SetDensity), "SetDensity");
+	engine->add(chaiscript::fun(&b2Fixture::SetFriction), "SetFriction");
+	engine->add(chaiscript::fun(&b2Fixture::SetRestitution), "SetRestitution");
+	engine->add(chaiscript::fun(&b2Fixture::SetSensor), "SetSensor");
 
 	// Body Types
 	engine->add_global_const(chaiscript::const_var(b2BodyType::b2_dynamicBody), "b2_dynamicBody");
