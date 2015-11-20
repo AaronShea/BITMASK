@@ -8,6 +8,10 @@ bit::PhysicsSystem::PhysicsSystem(SystemManager* manager, float gravityX, float 
 	// Construct a new Physics World
 	physicsWorld = new b2World(b2Vec2(gravityX, gravityY));
 
+	// Set a new contact listener for collision events
+	PhysicsSystemContactListener* contactor = new PhysicsSystemContactListener();
+	physicsWorld->SetContactListener(contactor);
+
 	// Enable sleeping within this world
 	physicsWorld->SetAllowSleeping(true);
 }
@@ -26,11 +30,6 @@ void bit::PhysicsSystem::update(sf::Time deltaTime)
 	for (auto& obj : objects)
 	{
 		auto physComp = obj->getSingleComponent<PhysicsBodyComponent>(ComponentIndex::PHYSBODY_COMPONENT);
-		if (physComp->getPhysBody()->IsAwake())
-		{
-			// If the body is awake it's also dirty
-			physComp->dirty = true;
-		}
 	}
 }
 
@@ -64,6 +63,9 @@ void bit::PhysicsSystem::addObj(GameObject* objToAdd)
 	// Now set the component physBody pointer to the actual physBody
 	physComp->setPhysBody(body);
 
+	// Set the userdata as a pointer to the owning object
+	physComp->getPhysBody()->SetUserData(objToAdd);
+
 	// Add object to the vector
 	objects.push_back(objToAdd);
 }
@@ -75,4 +77,18 @@ void bit::PhysicsSystem::removeObj(const GameObject* obj)
 b2World* bit::PhysicsSystem::getPhysWorld()
 {
 	return physicsWorld;
+}
+
+//// Box2D Contact Listeners
+
+void bit::PhysicsSystemContactListener::BeginContact(b2Contact* contact)
+{
+	sf::err() << "EntityA [" << ((GameObject*)contact->GetFixtureA()->GetBody()->GetUserData())->objectId << "] MADE contact with ";
+	sf::err() << "EntityB [" << ((GameObject*)contact->GetFixtureB()->GetBody()->GetUserData())->objectId << "]" << std::endl;
+}
+
+void bit::PhysicsSystemContactListener::EndContact(b2Contact* contact)
+{
+	sf::err() << "EntityA [" << ((GameObject*)contact->GetFixtureA()->GetBody()->GetUserData())->objectId << "] LEFT contact with ";
+	sf::err() << "EntityB [" << ((GameObject*)contact->GetFixtureB()->GetBody()->GetUserData())->objectId << "]" << std::endl;
 }
