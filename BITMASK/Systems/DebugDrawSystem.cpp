@@ -36,7 +36,17 @@ void bit::DebugDrawSystem::update(sf::Time deltaTime)
 
 void bit::DebugDrawSystem::processEvent(sf::Event& eEvent)
 {
-	
+	switch (eEvent.type)
+	{
+		case sf::Event::KeyPressed:
+			if (eEvent.key.code == 54)
+			{
+				this->enabled = !this->enabled;
+			}
+			break;
+		default:
+			break;
+	}
 }
 
 void bit::DebugDrawSystem::added()

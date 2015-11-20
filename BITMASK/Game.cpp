@@ -42,6 +42,7 @@ bit::Game::Game()
 	// Make a test render system (and a debug draw system)
 	renderSys = new RenderSystem(sysm, &mWindow);
 	debugSys = new DebugDrawSystem(sysm, physSys, &mWindow, true);
+	sysm->subscribeToEvents(debugSys);
 
 	// Make a new script engine and register global types	
 	ScriptDefs::registerTypes(chai);
