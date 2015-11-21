@@ -25,12 +25,6 @@ void bit::PhysicsSystem::update(sf::Time deltaTime)
 {
 	// Step the physics world (simulation)
 	physicsWorld->Step(static_cast<float32>(deltaTime.asMilliseconds()), 6, 2);
-
-	// Update all pairs of components
-	for (auto& obj : objects)
-	{
-		auto physComp = obj->getSingleComponent<PhysicsBodyComponent>(ComponentIndex::PHYSBODY_COMPONENT);
-	}
 }
 
 void bit::PhysicsSystem::processEvent(sf::Event& eEvent) { }
