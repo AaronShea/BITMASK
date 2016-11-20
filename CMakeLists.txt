@@ -71,13 +71,6 @@ set(BITMASK_MGR_SRC
 )
 source_group("Managers" FILES ${BITMASK_MGR_SRC})
 
-# Debugging
-set(BITMASK_DBG_SRC
-	"BITMASK/DrawDebug/BoxDebugrender.h"
-	"BITMASK/DrawDebug/BoxDebugrender.cpp"
-)
-source_group("Debug" FILES ${BITMASK_DBG_SRC})
-
 # Scripting
 set(BITMASK_SCRIPT_SRC
 	"BITMASK/Scripting/ScriptDefs.h"

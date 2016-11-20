@@ -5,7 +5,6 @@
 
 #include "Systems/RenderSystem.h"
 #include "Systems/PhysicsSystem.h"
-#include "Systems/DebugDrawSystem.h"
 #include "Systems/InputSystem.h"
 #include "Systems/ScriptSystem.h"
 
