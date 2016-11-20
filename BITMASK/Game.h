@@ -32,7 +32,6 @@ namespace bit
 
 			SystemManager* sysm;
 			RenderSystem* renderSys;
-			DebugDrawSystem* debugSys;
 			PhysicsSystem* physSys;
 			GameObjectManager* objManager;
 			

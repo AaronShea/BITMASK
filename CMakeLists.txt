@@ -40,10 +40,10 @@ set(BITMASK_SYS_SRC
 	"BITMASK/Systems/RenderSystem.cpp"
 	"BITMASK/Systems/PhysicsSystem.h"
 	"BITMASK/Systems/PhysicsSystem.cpp"
-	"BITMASK/Systems/DebugDrawSystem.h"
-	"BITMASK/Systems/DebugDrawSystem.cpp"
 	"BITMASK/Systems/BallMovementSystem.h"
 	"BITMASK/Systems/BallMovementSystem.cpp"
+	"BITMASK/Systems/ScriptSystem.h"
+	"BITMASK/Systems/ScriptSystem.cpp"
 )
 source_group("Systems" FILES ${BITMASK_SYS_SRC})
 

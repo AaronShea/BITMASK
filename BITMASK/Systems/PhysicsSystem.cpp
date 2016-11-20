@@ -57,8 +57,8 @@ void bit::PhysicsSystem::addObj(GameObject* objToAdd)
 	// Now set the component physBody pointer to the actual physBody
 	physComp->setPhysBody(body);
 
-	// Set the userdata as a pointer to the owning object
-	physComp->getPhysBody()->SetUserData(objToAdd);
+	// Set the userdata as a pointer to the owning physics component
+	physComp->getPhysBody()->SetUserData(physComp);
 
 	// Add object to the vector
 	objects.push_back(objToAdd);
@@ -77,12 +77,16 @@ b2World* bit::PhysicsSystem::getPhysWorld()
 
 void bit::PhysicsSystemContactListener::BeginContact(b2Contact* contact)
 {
-	sf::err() << "EntityA [" << ((GameObject*)contact->GetFixtureA()->GetBody()->GetUserData())->objectId << "] MADE contact with ";
-	sf::err() << "EntityB [" << ((GameObject*)contact->GetFixtureB()->GetBody()->GetUserData())->objectId << "]" << std::endl;
+	auto a = (PhysicsBodyComponent*)contact->GetFixtureA()->GetBody()->GetUserData();
+	auto b = (PhysicsBodyComponent*)contact->GetFixtureB()->GetBody()->GetUserData();
+	a->onCollideStart(b);
+	b->onCollideStart(a);
 }
 
 void bit::PhysicsSystemContactListener::EndContact(b2Contact* contact)
 {
-	sf::err() << "EntityA [" << ((GameObject*)contact->GetFixtureA()->GetBody()->GetUserData())->objectId << "] LEFT contact with ";
-	sf::err() << "EntityB [" << ((GameObject*)contact->GetFixtureB()->GetBody()->GetUserData())->objectId << "]" << std::endl;
+	auto a = (PhysicsBodyComponent*)contact->GetFixtureA()->GetBody()->GetUserData();
+	auto b = (PhysicsBodyComponent*)contact->GetFixtureB()->GetBody()->GetUserData();
+	a->onCollideEnd(b);
+	b->onCollideEnd(a);
 }

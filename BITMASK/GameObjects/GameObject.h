@@ -91,6 +91,7 @@ namespace bit
 
 				// Set the component index of the last inserted component
 				components.back().second->id = compIndex;
+				components.back().second->parent = this;
 
 				// If we have not set this bit yet
 				if (!componentBitset.test(components.back().second->componentType))

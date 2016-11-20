@@ -22,5 +22,8 @@ namespace bit
 
 			void setPhysBody(b2Body* newBody);
 			b2Fixture* addFixtureToBody(const float32& density, b2Shape* shape) const;
+
+			void onCollideStart(PhysicsBodyComponent* otherPhysComp);
+			void onCollideEnd(PhysicsBodyComponent* otherPhysComp);
 	};
 }

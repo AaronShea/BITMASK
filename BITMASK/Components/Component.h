@@ -5,6 +5,8 @@
 
 namespace bit
 {
+	class GameObject;
+
 	class Component
 	{
 
@@ -22,6 +24,8 @@ namespace bit
 			int id = 0;
 
 			int componentType = 0;
+
+			GameObject* parent;
 
 			bool dirty = false;
 	};

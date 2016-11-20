@@ -1,4 +1,6 @@
+#include "GameObjects/GameObject.h"
 #include "PhysicsBodyComponent.h"
+#include "ScriptedComponent.h"
 
 bit::PhysicsBodyComponent::PhysicsBodyComponent(b2BodyType bodyType, float x, float y, float rot)
 	: Component()
@@ -35,6 +37,24 @@ b2Fixture* bit::PhysicsBodyComponent::addFixtureToBody(const float32& density, b
 		throw std::runtime_error("PhysicsBodyComponent::addFixtureToBody No body to this component yet!");
 	}
 	return this->physBody->CreateFixture(shape, density);
+}
+
+void bit::PhysicsBodyComponent::onCollideStart(PhysicsBodyComponent* otherPhysComp)
+{
+	auto scripted = this->parent->getSingleComponent<ScriptedComponent>(SCRIPT_COMPONENT);
+	if (scripted)
+	{
+		scripted->callFunction("on_collide_start");
+	}
+}
+
+void bit::PhysicsBodyComponent::onCollideEnd(PhysicsBodyComponent* otherPhysComp)
+{
+	auto scripted = this->parent->getSingleComponent<ScriptedComponent>(SCRIPT_COMPONENT);
+	if (scripted)
+	{
+		scripted->callFunction("on_collide_end");
+	}
 }
 
 bit::PhysicsBodyComponent::~PhysicsBodyComponent()
