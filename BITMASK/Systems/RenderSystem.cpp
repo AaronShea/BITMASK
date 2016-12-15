@@ -28,7 +28,15 @@ void bit::RenderSystem::update(sf::Time deltaTime)
 	// Now draw all the drawable data
 	for (auto& dr : drawables)
 	{
-		target->draw(dr->getDrawData());
+		// If this draw object has a shader, apply it first
+		if (dr->shader != nullptr)
+		{
+			target->draw(dr->getDrawData(), dr->shader);
+		}
+		else {
+			// Otherwise just draw alone
+			target->draw(dr->getDrawData());
+		}
 	}
 }
 

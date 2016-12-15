@@ -1,4 +1,5 @@
 #pragma once
+#include "SFML/Graphics/Shader.hpp"
 #include "SFML/Graphics.hpp"
 #include "Component.h"
 
@@ -12,6 +13,8 @@ namespace bit
 
 			virtual void added() override = 0;
 			virtual void removed() override = 0;
+
+			sf::Shader* shader;
 	};
 
 	// Just a mark or "flag" component. No data, just to let the render system know we can render stuff in this object
