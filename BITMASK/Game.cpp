@@ -17,7 +17,7 @@
 
 
 bit::Game::Game()
-	: mWindow(sf::VideoMode(1280, 720), "BITMASK")
+	: mWindow(sf::VideoMode(1920, 1080), "BITMASK")
 {
 	// Limit the framerate of the window to 200fps
 	mWindow.setFramerateLimit(200);
@@ -100,8 +100,7 @@ void bit::Game::render()
 	// Clear the window
 	mWindow.clear();
 	
-	// Update the debug draw as well
+	// Update drawing
 	renderSys->update(sf::Time().Zero);
-
 	mWindow.display();
 }

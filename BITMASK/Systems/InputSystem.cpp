@@ -25,6 +25,8 @@ void bit::InputSystem::processEvent(sf::Event& eEvent)
 		case sf::Event::KeyPressed:
 			std::cout << "KeyPressed: " << eEvent.key.code << std::endl;
 			break;
+		case sf::Event::KeyReleased:
+			std::cout << "KeyReleased: " << eEvent.key.code << std::endl;
 		default:
 			break;
 	}
