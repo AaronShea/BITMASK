@@ -16,8 +16,15 @@ bit::ScriptedComponent::~ScriptedComponent()
 	
 }
 
-void bit::ScriptedComponent::added() {}
-void bit::ScriptedComponent::removed() {}
+void bit::ScriptedComponent::added()
+{
+	this->callFunction("on_added");
+}
+
+void bit::ScriptedComponent::removed() 
+{
+	this->callFunction("on_before_removed");
+}
 
 void bit::ScriptedComponent::init(chaiscript::ChaiScript* scriptEngine)
 {
